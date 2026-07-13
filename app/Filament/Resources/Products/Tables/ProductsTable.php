@@ -10,6 +10,7 @@ use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
 
 class ProductsTable
 {
@@ -20,6 +21,7 @@ class ProductsTable
                 TextColumn::make('title')
                     ->searchable(),
                 TextColumn::make('description')
+                    ->limit(50)
                     ->searchable(),
                 ToggleColumn::make('is_featured'),
                 ToggleColumn::make('is_new'),
@@ -27,10 +29,12 @@ class ProductsTable
                     ->label('Price')
                     ->sortable(),
                 TextColumn::make('preparation_time')
-                    ->numeric()
+                    ->formatStateUsing(fn (?int $state): ?string => $state === null ? null : "{$state} ".Str::plural('min', $state))
+                    ->badge()
                     ->sortable(),
                 ToggleColumn::make('is_active'),
                 TextColumn::make('category.title')
+                    ->badge()
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
