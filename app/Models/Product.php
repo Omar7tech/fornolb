@@ -9,8 +9,10 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Sluggable\Attributes\Sluggable;
 
 #[Sluggable(from: 'title', to: 'slug')]
@@ -56,5 +58,26 @@ class Product extends Model implements HasMedia
         $direction = strtolower($direction) === 'desc' ? 'desc' : 'asc';
 
         return $query->orderByRaw("coalesce(discount_price, price) {$direction}");
+    }
+
+     public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('image')
+            ->singleFile()
+            ->useDisk('public');
+    }
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('webp')
+            ->nonQueued()
+            ->format('webp')
+            ->quality(75);
+
+        $this->addMediaConversion('thumb')
+            ->nonQueued()
+            ->format('webp')
+            ->quality(50)
+            ->fit(Fit::Max, 400, 400);
     }
 }
