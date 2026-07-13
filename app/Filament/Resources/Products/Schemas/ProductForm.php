@@ -5,7 +5,10 @@ namespace App\Filament\Resources\Products\Schemas;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
 
 class ProductForm
 {
@@ -13,40 +16,58 @@ class ProductForm
     {
         return $schema
             ->components([
-                TextInput::make('title')
-                    ->required(),
-                TextInput::make('slug')
-                    ->required(),
-                TextInput::make('description')
-                    ->default(null)
-                    ->placeholder('No description'),
-                Toggle::make('is_featured')
-                    ->required(),
-                Toggle::make('is_new')
-                    ->required(),
-                TextInput::make('price')
-                    ->required()
-                    ->numeric()
-                    ->default(0.0)
-                    ->prefix('$'),
-                TextInput::make('discount_price')
-                    ->numeric()
-                    ->default(null)
-                    ->prefix('$')
-                    ->placeholder('No discount'),
-                TextInput::make('preparation_time')
-                    ->numeric()
-                    ->default(null)
-                    ->placeholder('Not specified'),
-                TextInput::make('sort')
-                    ->required()
-                    ->numeric()
-                    ->default(0),
-                Toggle::make('is_active')
-                    ->required(),
-                Select::make('category_id')
-                    ->relationship('category', 'title')
-                    ->required(),
+                Tabs::make('Product')
+                    ->columnSpanFull()
+                    ->tabs([
+                        Tab::make('Details')
+                            ->icon(Heroicon::OutlinedInformationCircle)
+                            ->schema([
+                                TextInput::make('title')
+                                    ->required()
+                                    ->columnSpanFull(),
+                                TextInput::make('description')
+                                    ->default(null)
+                                    ->placeholder('No description')
+                                    ->columnSpanFull(),
+                                Select::make('category_id')
+                                    ->label('Category')
+                                    ->relationship('category', 'title')
+                                    ->required()
+                                    ->searchable()
+                                    ->preload(),
+                                Toggle::make('is_active')
+                                    ->required()
+                                    ->default(true),
+                            ])
+                            ->columns(2),
+                        Tab::make('Pricing & Timing')
+                            ->icon(Heroicon::OutlinedCurrencyDollar)
+                            ->schema([
+                                TextInput::make('price')
+                                    ->required()
+                                    ->numeric()
+                                    ->default(0.0)
+                                    ->prefix('$'),
+                                TextInput::make('discount_price')
+                                    ->numeric()
+                                    ->default(null)
+                                    ->prefix('$')
+                                    ->placeholder('No discount'),
+                                TextInput::make('preparation_time')
+                                    ->numeric()
+                                    ->default(null)
+                                    ->placeholder('Not specified')
+                                    ->suffix('min'),
+                            ])
+                            ->columns(2),
+                        Tab::make('Merchandising')
+                            ->icon(Heroicon::OutlinedSparkles)
+                            ->schema([
+                                Toggle::make('is_featured'),
+                                Toggle::make('is_new'),
+                            ])
+                            ->columns(2),
+                    ]),
             ]);
     }
 }
