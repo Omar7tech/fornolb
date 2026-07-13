@@ -22,7 +22,7 @@ return new class extends Migration
             $table->decimal('price', 8, 2)->default(0);
             $table->decimal('discount_price', 8, 2)->nullable();
             $table->unsignedSmallInteger('preparation_time')->nullable();
-            $table->integer('sort')->default(0)->nullable();
+            $table->integer('sort')->default(0);
             $table->boolean('is_active')->default(true);
             $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
