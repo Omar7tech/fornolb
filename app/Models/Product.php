@@ -3,10 +3,14 @@
 namespace App\Models;
 
 use Database\Factories\ProductFactory;
+use Illuminate\Database\Eloquent\Attributes\Guarded;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\Sluggable\Attributes\Sluggable;
 
+#[Sluggable(from: 'title', to: 'slug')]
+#[Guarded(['id'])]
 class Product extends Model
 {
     /** @use HasFactory<ProductFactory> */
