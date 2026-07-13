@@ -10,6 +10,7 @@ use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
 class ProductsTable
@@ -35,7 +36,7 @@ class ProductsTable
                     ->toggleable(),
                 PriceColumn::make('price')
                     ->label('Price')
-                    ->sortable(),
+                    ->sortable(query: fn (Builder $query, string $direction): Builder => $query->orderByEffectivePrice($direction)),
                 TextColumn::make('preparation_time')
                     ->label('Prep. time')
                     ->formatStateUsing(fn (?int $state): ?string => $state === null ? null : "{$state} ".Str::plural('min', $state))
