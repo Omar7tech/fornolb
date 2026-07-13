@@ -20,6 +20,11 @@ class CategoriesTable
                 ToggleColumn::make('is_active')
                     ->label('Active')
                     ->onColor('success'),
+                TextColumn::make('products_count')
+                    ->label('Products')
+                    ->counts('products')
+                    ->badge()
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->label('Created at')
                     ->dateTime()
