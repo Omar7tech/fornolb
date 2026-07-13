@@ -9,6 +9,7 @@ use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -16,6 +17,7 @@ use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\TernaryFilter;
@@ -49,6 +51,15 @@ class ProductsRelationManager extends RelationManager
                                 Toggle::make('is_active')
                                     ->required()
                                     ->default(true),
+                                SpatieMediaLibraryFileUpload::make('image')
+                                    ->collection('image')
+                                    ->disk('public')
+                                    ->visibility('public')
+                                    ->image()
+                                    ->conversion('webp')
+                                    ->responsiveImages()
+                                    ->imageEditor()
+                                    ->columnSpanFull(),
                             ])
                             ->columns(2),
                         Tab::make('Pricing & Timing')
@@ -87,6 +98,11 @@ class ProductsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('title')
             ->columns([
+                SpatieMediaLibraryImageColumn::make('image')
+                    ->label('Image')
+                    ->collection('image')
+                    ->conversion('webp')
+                    ->circular(),
                 TextColumn::make('title')
                     ->label('Title')
                     ->searchable(),

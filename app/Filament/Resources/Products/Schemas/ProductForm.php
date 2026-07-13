@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Products\Schemas;
 
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Tabs;
@@ -38,6 +39,15 @@ class ProductForm
                                 Toggle::make('is_active')
                                     ->required()
                                     ->default(true),
+                                SpatieMediaLibraryFileUpload::make('image')
+                                    ->collection('image')
+                                    ->disk('public')
+                                    ->visibility('public')
+                                    ->image()
+                                    ->conversion('webp')
+                                    ->responsiveImages()
+                                    ->imageEditor()
+                                    ->columnSpanFull(),
                             ])
                             ->columns(2),
                         Tab::make('Pricing & Timing')

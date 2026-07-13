@@ -3,8 +3,6 @@
 namespace App\Filament\Resources\Products\Tables;
 
 use App\Filament\Tables\Columns\PriceColumn;
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
@@ -12,6 +10,7 @@ use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
@@ -21,6 +20,11 @@ class ProductsTable
     {
         return $table
             ->columns([
+                SpatieMediaLibraryImageColumn::make('image')
+                    ->label('Image')
+                    ->collection('image')
+                    ->conversion('webp')
+                    ->circular(),
                 TextColumn::make('title')
                     ->label('Title')
                     ->searchable(),
