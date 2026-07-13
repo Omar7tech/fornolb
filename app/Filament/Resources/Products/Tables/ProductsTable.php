@@ -6,8 +6,8 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 
 class ProductsTable
@@ -18,14 +18,10 @@ class ProductsTable
             ->columns([
                 TextColumn::make('title')
                     ->searchable(),
-                TextColumn::make('slug')
-                    ->searchable(),
                 TextColumn::make('description')
                     ->searchable(),
-                IconColumn::make('is_featured')
-                    ->boolean(),
-                IconColumn::make('is_new')
-                    ->boolean(),
+                ToggleColumn::make('is_featured'),
+                ToggleColumn::make('is_new'),
                 TextColumn::make('price')
                     ->money()
                     ->sortable(),
@@ -35,11 +31,7 @@ class ProductsTable
                 TextColumn::make('preparation_time')
                     ->numeric()
                     ->sortable(),
-                TextColumn::make('sort')
-                    ->numeric()
-                    ->sortable(),
-                IconColumn::make('is_active')
-                    ->boolean(),
+                ToggleColumn::make('is_active'),
                 TextColumn::make('category.title')
                     ->searchable(),
                 TextColumn::make('created_at')
@@ -51,6 +43,8 @@ class ProductsTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultSort('sort')
+            ->reorderable('sort')
             ->filters([
                 //
             ])
