@@ -30,9 +30,10 @@ class ProductsTable
                     ->sortable(),
                 TextColumn::make('preparation_time')
                     ->formatStateUsing(fn (?int $state): ?string => $state === null ? null : "{$state} ".Str::plural('min', $state))
+                    ->color('warning')
                     ->badge()
                     ->sortable(),
-                ToggleColumn::make('is_active'),
+                ToggleColumn::make('is_active')->onColor('success'),
                 TextColumn::make('category.title')
                     ->badge()
                     ->searchable(),
