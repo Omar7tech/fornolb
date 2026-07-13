@@ -2,8 +2,6 @@
 
 namespace App\Filament\Resources\Categories\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
@@ -17,9 +15,6 @@ class CategoriesTable
         return $table
             ->columns([
                 TextColumn::make('title')
-                    ->searchable(),
-                TextColumn::make('description')
-                    ->limit(50)
                     ->searchable(),
                 ToggleColumn::make('is_active'),
                 TextColumn::make('created_at')
