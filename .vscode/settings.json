@@ -1,0 +1,19 @@
+{
+    "intelephense.files.exclude": [
+        "**/.git/**",
+        "**/.svn/**",
+        "**/.hg/**",
+        "**/CVS/**",
+        "**/.DS_Store/**",
+        "**/node_modules/**",
+        "**/bower_components/**"
+    ],
+    "intelephense.environment.phpVersion": "8.4",
+    "intelephense.completion.insertUseDeclaration": true,
+    "intelephense.completion.maxItems": 100,
+    "php.suggest.basic": false,
+    "intelephense.files.include": [
+        "${workspaceRoot}/app",
+        "${workspaceRoot}/vendor/filament"
+    ]
+}
