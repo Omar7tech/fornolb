@@ -15,13 +15,18 @@ class CategoriesTable
         return $table
             ->columns([
                 TextColumn::make('title')
+                    ->label('Title')
                     ->searchable(),
-                ToggleColumn::make('is_active'),
+                ToggleColumn::make('is_active')
+                    ->label('Active')
+                    ->onColor('success'),
                 TextColumn::make('created_at')
+                    ->label('Created at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label('Updated at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

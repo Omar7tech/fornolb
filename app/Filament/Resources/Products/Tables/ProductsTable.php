@@ -19,31 +19,46 @@ class ProductsTable
         return $table
             ->columns([
                 TextColumn::make('title')
+                    ->label('Title')
                     ->searchable(),
                 TextColumn::make('description')
+                    ->label('Description')
                     ->limit(50)
                     ->placeholder('-')
-                    ->searchable(),
-                ToggleColumn::make('is_featured'),
-                ToggleColumn::make('is_new'),
+                    ->searchable()
+                    ->toggleable(),
+                ToggleColumn::make('is_featured')
+                    ->label('Featured')
+                    ->toggleable(),
+                ToggleColumn::make('is_new')
+                    ->label('New')
+                    ->toggleable(),
                 PriceColumn::make('price')
                     ->label('Price')
                     ->sortable(),
                 TextColumn::make('preparation_time')
+                    ->label('Prep. time')
                     ->formatStateUsing(fn (?int $state): ?string => $state === null ? null : "{$state} ".Str::plural('min', $state))
                     ->placeholder('-')
                     ->color('warning')
                     ->badge()
-                    ->sortable(),
-                ToggleColumn::make('is_active')->onColor('success'),
+                    ->sortable()
+                    ->toggleable(),
+                ToggleColumn::make('is_active')
+                    ->label('Active')
+                    ->onColor('success'),
                 TextColumn::make('category.title')
+                    ->label('Category')
                     ->badge()
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('created_at')
+                    ->label('Created at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label('Updated at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
