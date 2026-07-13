@@ -14,14 +14,8 @@ class CategoryForm
             ->components([
                 TextInput::make('title')
                     ->required(),
-                TextInput::make('slug')
-                    ->required(),
                 TextInput::make('description')
                     ->default(null),
-                TextInput::make('sort')
-                    ->required()
-                    ->numeric()
-                    ->default(0),
                 Toggle::make('is_active')
                     ->required(),
             ]);

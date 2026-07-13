@@ -13,11 +13,8 @@ class CategoryInfolist
         return $schema
             ->components([
                 TextEntry::make('title'),
-                TextEntry::make('slug'),
                 TextEntry::make('description')
                     ->placeholder('-'),
-                TextEntry::make('sort')
-                    ->numeric(),
                 IconEntry::make('is_active')
                     ->boolean(),
                 TextEntry::make('created_at')
