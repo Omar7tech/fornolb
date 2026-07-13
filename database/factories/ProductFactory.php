@@ -22,7 +22,7 @@ class ProductFactory extends Factory
         $price = fake()->randomFloat(2, 5, 100);
         return [
             'title' => $title,
-            'description' => fake()->paragraph(),
+            'description' => fake()->sentence(),
             'is_featured' => fake()->boolean(20),
             'is_new' => fake()->boolean(30),
             'price' => $price,

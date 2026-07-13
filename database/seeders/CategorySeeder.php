@@ -12,7 +12,7 @@ class CategorySeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void
-    {Category::factory(10)->create();
-        //
+    {
+        Category::factory(10)->create();
     }
 }
