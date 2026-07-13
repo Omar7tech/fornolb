@@ -22,6 +22,7 @@ class ProductsTable
                     ->searchable(),
                 TextColumn::make('description')
                     ->limit(50)
+                    ->placeholder('-')
                     ->searchable(),
                 ToggleColumn::make('is_featured'),
                 ToggleColumn::make('is_new'),
@@ -30,6 +31,7 @@ class ProductsTable
                     ->sortable(),
                 TextColumn::make('preparation_time')
                     ->formatStateUsing(fn (?int $state): ?string => $state === null ? null : "{$state} ".Str::plural('min', $state))
+                    ->placeholder('-')
                     ->color('warning')
                     ->badge()
                     ->sortable(),

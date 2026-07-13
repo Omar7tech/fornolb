@@ -18,7 +18,8 @@ class ProductForm
                 TextInput::make('slug')
                     ->required(),
                 TextInput::make('description')
-                    ->default(null),
+                    ->default(null)
+                    ->placeholder('No description'),
                 Toggle::make('is_featured')
                     ->required(),
                 Toggle::make('is_new')
@@ -31,10 +32,12 @@ class ProductForm
                 TextInput::make('discount_price')
                     ->numeric()
                     ->default(null)
-                    ->prefix('$'),
+                    ->prefix('$')
+                    ->placeholder('No discount'),
                 TextInput::make('preparation_time')
                     ->numeric()
-                    ->default(null),
+                    ->default(null)
+                    ->placeholder('Not specified'),
                 TextInput::make('sort')
                     ->required()
                     ->numeric()
