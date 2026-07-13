@@ -9,6 +9,8 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
@@ -67,8 +69,29 @@ class ProductsTable
             ->defaultSort('sort')
             ->reorderable('sort')
             ->filters([
-                //
+                SelectFilter::make('category')
+                    ->label('Category')
+                    ->relationship('category', 'title')
+                    ->searchable()
+                    ->preload(),
+                TernaryFilter::make('discount_price')
+                    ->label('Discount')
+                    ->placeholder('All products')
+                    ->trueLabel('On discount')
+                    ->falseLabel('Full price')
+                    ->queries(
+                        true: fn (Builder $query): Builder => $query->whereNotNull('discount_price'),
+                        false: fn (Builder $query): Builder => $query->whereNull('discount_price'),
+                        blank: fn (Builder $query): Builder => $query,
+                    ),
+                TernaryFilter::make('is_active')
+                    ->label('Active'),
+                TernaryFilter::make('is_featured')
+                    ->label('Featured'),
+                TernaryFilter::make('is_new')
+                    ->label('New'),
             ])
+            ->filtersFormColumns(2)
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
