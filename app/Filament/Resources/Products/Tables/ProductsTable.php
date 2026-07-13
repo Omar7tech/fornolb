@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Products\Tables;
 
+use App\Filament\Tables\Columns\PriceColumn;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -22,11 +23,8 @@ class ProductsTable
                     ->searchable(),
                 ToggleColumn::make('is_featured'),
                 ToggleColumn::make('is_new'),
-                TextColumn::make('price')
-                    ->money()
-                    ->sortable(),
-                TextColumn::make('discount_price')
-                    ->money()
+                PriceColumn::make('price')
+                    ->label('Price')
                     ->sortable(),
                 TextColumn::make('preparation_time')
                     ->numeric()
