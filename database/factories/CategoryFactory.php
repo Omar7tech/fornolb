@@ -17,8 +17,12 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
+        $title = fake()->words(2, true);
         return [
-            //
+            'title' => $title,
+            'description' => fake()->sentence(),
+            'sort' => fake()->numberBetween(0, 100),
+            'is_active' => true,
         ];
     }
 }
