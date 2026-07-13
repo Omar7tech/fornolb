@@ -95,11 +95,6 @@ class ProductsTable
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
             ]);
     }
 }
