@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\Products\Schemas;
 
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Repeater\TableColumn;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
@@ -77,6 +79,32 @@ class ProductForm
                                 Toggle::make('is_new'),
                             ])
                             ->columns(2),
+                        Tab::make('Variants')
+                            ->icon(Heroicon::OutlinedRectangleStack)
+                            ->schema([
+                                Repeater::make('variants')
+                                    ->hiddenLabel()
+                                    ->table([
+                                        TableColumn::make('Name')->markAsRequired(),
+                                        TableColumn::make('Price')->markAsRequired(),
+                                        TableColumn::make('Discount price'),
+                                    ])
+                                    ->compact()
+                                    ->addActionLabel('Add variant')
+                                    ->reorderable()
+                                    ->schema([
+                                        TextInput::make('name')
+                                            ->required()
+                                            ->maxLength(255),
+                                        TextInput::make('price')
+                                            ->required()
+                                            ->numeric()
+                                            ->minValue(0),
+                                        TextInput::make('discount_price')
+                                            ->numeric()
+                                            ->minValue(0),
+                                    ]),
+                            ]),
                     ]),
             ]);
     }

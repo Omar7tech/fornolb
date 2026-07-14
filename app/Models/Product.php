@@ -22,6 +22,10 @@ class Product extends Model implements HasMedia
     /** @use HasFactory<ProductFactory> */
     use HasFactory ,InteractsWithMedia;
 
+    protected $casts = [
+        'variants' => 'array',
+    ];
+
     /**
      * @return BelongsTo<Category, $this>
      */
@@ -60,7 +64,7 @@ class Product extends Model implements HasMedia
         return $query->orderByRaw("coalesce(discount_price, price) {$direction}");
     }
 
-     public function registerMediaCollections(): void
+    public function registerMediaCollections(): void
     {
         $this->addMediaCollection('image')
             ->singleFile()

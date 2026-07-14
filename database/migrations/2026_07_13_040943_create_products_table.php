@@ -21,6 +21,7 @@ return new class extends Migration
             $table->boolean('is_new')->default(false);
             $table->decimal('price', 8, 2)->default(0);
             $table->decimal('discount_price', 8, 2)->nullable();
+            $table->json('variants')->nullable();
             $table->unsignedSmallInteger('preparation_time')->nullable();
             $table->integer('sort')->default(0);
             $table->boolean('is_active')->default(true);
