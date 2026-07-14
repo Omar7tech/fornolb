@@ -20,7 +20,7 @@ export function HeroLogo({ className }: { className?: string }) {
                         to="360 0.5 0.5"
                         dur="6s"
                         repeatCount="indefinite"
-                        className="motion-reduce:[display:none]"
+                        className="motion-reduce:hidden"
                     />
                 </linearGradient>
             </defs>
