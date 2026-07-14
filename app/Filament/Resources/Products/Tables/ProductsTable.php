@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Products\Tables;
 
 use App\Filament\Tables\Columns\PriceColumn;
+use App\Models\Product;
 use App\Settings\GeneralSettings;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
@@ -64,6 +65,13 @@ class ProductsTable
                     ->badge()
                     ->searchable()
                     ->toggleable(),
+                TextColumn::make('variants')
+                    ->label('Variants')
+                    ->state(fn (Product $record): ?int => filled($record->variants) ? count($record->variants) : null)
+                    ->badge()
+                    ->color('info')
+                    ->placeholder('None')
+                    ->toggleable(),
                 TextColumn::make('created_at')
                     ->label('Created at')
                     ->dateTime()
@@ -91,6 +99,16 @@ class ProductsTable
                     ->queries(
                         true: fn (Builder $query): Builder => $query->whereNotNull('discount_price'),
                         false: fn (Builder $query): Builder => $query->whereNull('discount_price'),
+                        blank: fn (Builder $query): Builder => $query,
+                    ),
+                TernaryFilter::make('variants')
+                    ->label('Variants')
+                    ->placeholder('All products')
+                    ->trueLabel('Has variants')
+                    ->falseLabel('No variants')
+                    ->queries(
+                        true: fn (Builder $query): Builder => $query->whereNotNull('variants'),
+                        false: fn (Builder $query): Builder => $query->whereNull('variants'),
                         blank: fn (Builder $query): Builder => $query,
                     ),
                 TernaryFilter::make('is_active')
