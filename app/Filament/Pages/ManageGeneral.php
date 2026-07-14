@@ -95,6 +95,7 @@ class ManageGeneral extends SettingsPage
                                     ->validationAttribute('WhatsApp number')
                                     ->helperText('Messages from the badge are sent to this number. Include the country code.')
                                     ->tel()
+                                    ->default('+96178792289')
                                     ->maxLength(255)
                                     ->requiredIf('show_whatsapp_badge', true)
                                     ->columnSpanFull()

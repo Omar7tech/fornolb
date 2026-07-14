@@ -11,6 +11,6 @@ return new class extends SettingsMigration
         $this->migrator->add('general.lbp_exchange_rate', 90000);
         $this->migrator->add('general.price_display', PriceDisplay::USD->value);
         $this->migrator->add('general.show_whatsapp_badge', false);
-        $this->migrator->add('general.whatsapp_badge_number', null);
+        $this->migrator->add('general.whatsapp_badge_number', '+96178792289');
     }
 };
