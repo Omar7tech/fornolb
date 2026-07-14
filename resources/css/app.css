@@ -8,4 +8,8 @@
         'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
         'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
         'Noto Color Emoji';
+
+    --color-brand-teal: #1a6b6b;
+    --color-brand-teal-light: #8fd7d6;
+    --color-brand-ink: #0e1f1c;
 }
