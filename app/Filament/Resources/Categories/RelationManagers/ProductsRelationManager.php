@@ -3,12 +3,15 @@
 namespace App\Filament\Resources\Categories\RelationManagers;
 
 use App\Filament\Tables\Columns\PriceColumn;
+use App\Models\Product;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Repeater\TableColumn;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -89,6 +92,32 @@ class ProductsRelationManager extends RelationManager
                                 Toggle::make('is_new'),
                             ])
                             ->columns(2),
+                        Tab::make('Variants')
+                            ->icon(Heroicon::OutlinedRectangleStack)
+                            ->schema([
+                                Repeater::make('variants')
+                                    ->hiddenLabel()
+                                    ->table([
+                                        TableColumn::make('Name')->markAsRequired(),
+                                        TableColumn::make('Price')->markAsRequired(),
+                                        TableColumn::make('Discount price'),
+                                    ])
+                                    ->compact()
+                                    ->addActionLabel('Add variant')
+                                    ->reorderable()
+                                    ->schema([
+                                        TextInput::make('name')
+                                            ->required()
+                                            ->maxLength(255),
+                                        TextInput::make('price')
+                                            ->required()
+                                            ->numeric()
+                                            ->minValue(0),
+                                        TextInput::make('discount_price')
+                                            ->numeric()
+                                            ->minValue(0),
+                                    ]),
+                            ]),
                     ]),
             ]);
     }
@@ -132,6 +161,13 @@ class ProductsRelationManager extends RelationManager
                 ToggleColumn::make('is_active')
                     ->label('Active')
                     ->onColor('success'),
+                TextColumn::make('variants')
+                    ->label('Variants')
+                    ->state(fn (Product $record): ?int => filled($record->variants) ? count($record->variants) : null)
+                    ->badge()
+                    ->color('info')
+                    ->placeholder('None')
+                    ->toggleable(),
                 TextColumn::make('created_at')
                     ->label('Created at')
                     ->dateTime()
@@ -154,6 +190,16 @@ class ProductsRelationManager extends RelationManager
                     ->queries(
                         true: fn (Builder $query): Builder => $query->whereNotNull('discount_price'),
                         false: fn (Builder $query): Builder => $query->whereNull('discount_price'),
+                        blank: fn (Builder $query): Builder => $query,
+                    ),
+                TernaryFilter::make('variants')
+                    ->label('Variants')
+                    ->placeholder('All products')
+                    ->trueLabel('Has variants')
+                    ->falseLabel('No variants')
+                    ->queries(
+                        true: fn (Builder $query): Builder => $query->whereNotNull('variants'),
+                        false: fn (Builder $query): Builder => $query->whereNull('variants'),
                         blank: fn (Builder $query): Builder => $query,
                     ),
                 TernaryFilter::make('is_active')

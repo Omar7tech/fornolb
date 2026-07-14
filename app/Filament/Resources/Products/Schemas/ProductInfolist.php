@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Products\Schemas;
 
 use Filament\Infolists\Components\IconEntry;
+use Filament\Infolists\Components\RepeatableEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
@@ -65,6 +66,22 @@ class ProductInfolist
                                     ->boolean(),
                             ])
                             ->columns(2),
+                        Tab::make('Variants')
+                            ->icon(Heroicon::OutlinedRectangleStack)
+                            ->schema([
+                                RepeatableEntry::make('variants')
+                                    ->hiddenLabel()
+                                    ->placeholder('No variants')
+                                    ->schema([
+                                        TextEntry::make('name'),
+                                        TextEntry::make('price')
+                                            ->money(),
+                                        TextEntry::make('discount_price')
+                                            ->money()
+                                            ->placeholder('-'),
+                                    ])
+                                    ->columns(3),
+                            ]),
                     ]),
             ]);
     }
