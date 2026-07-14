@@ -16,6 +16,10 @@ class Category extends Model
     /** @use HasFactory<CategoryFactory> */
     use HasFactory;
 
+    protected $casts = [
+        'is_active' => 'boolean',
+    ];
+
     /**
      * @return HasMany<Product, $this>
      */

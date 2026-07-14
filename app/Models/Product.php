@@ -24,6 +24,9 @@ class Product extends Model implements HasMedia
 
     protected $casts = [
         'variants' => 'array',
+        'is_featured' => 'boolean',
+        'is_new' => 'boolean',
+        'is_active' => 'boolean',
     ];
 
     /**
