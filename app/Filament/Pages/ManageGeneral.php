@@ -3,9 +3,12 @@
 namespace App\Filament\Pages;
 
 use App\Enums\PriceDisplay;
+use App\Enums\SocialPlatform;
 use App\Settings\GeneralSettings;
 use BackedEnum;
 use Filament\Forms\Components\Radio;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Pages\SettingsPage;
@@ -102,6 +105,57 @@ class ManageGeneral extends SettingsPage
                                     ->visibleJs(<<<'JS'
                                         $get('show_whatsapp_badge')
                                         JS),
+                            ]),
+
+                        Tab::make('Social')
+                            ->icon(Heroicon::OutlinedShare)
+                            ->schema([
+                                Repeater::make('social_links')
+                                    ->label('Social media links')
+                                    ->helperText('These appear in the storefront footer.')
+                                    ->addActionLabel('Add link')
+                                    ->columnSpanFull()
+                                    ->itemLabel(function (array $state): ?string {
+                                        $platform = $state['platform'] ?? null;
+
+                                        if (! $platform instanceof SocialPlatform) {
+                                            $platform = is_string($platform) ? SocialPlatform::tryFrom($platform) : null;
+                                        }
+
+                                        if ($platform === SocialPlatform::OTHER) {
+                                            return $state['name'] ?: $platform->getLabel();
+                                        }
+
+                                        return $platform?->getLabel();
+                                    })
+                                    ->schema([
+                                        Select::make('platform')
+                                            ->label('Platform')
+                                            ->validationAttribute('platform')
+                                            ->options(SocialPlatform::class)
+                                            ->required()
+                                            ->live()
+                                            ->columnSpanFull(),
+
+                                        TextInput::make('name')
+                                            ->label('Name')
+                                            ->validationAttribute('name')
+                                            ->helperText('Shown as the link label on the storefront.')
+                                            ->maxLength(255)
+                                            ->requiredIf('platform', SocialPlatform::OTHER->value)
+                                            ->columnSpanFull()
+                                            ->visibleJs(<<<'JS'
+                                                $get('platform') === 'other'
+                                                JS),
+
+                                        TextInput::make('url')
+                                            ->label('Link')
+                                            ->validationAttribute('link')
+                                            ->url()
+                                            ->required()
+                                            ->maxLength(255)
+                                            ->columnSpanFull(),
+                                    ]),
                             ]),
                     ]),
             ]);
