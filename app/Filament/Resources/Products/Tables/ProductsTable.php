@@ -3,14 +3,15 @@
 namespace App\Filament\Resources\Products\Tables;
 
 use App\Filament\Tables\Columns\PriceColumn;
+use App\Settings\GeneralSettings;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
@@ -18,6 +19,9 @@ class ProductsTable
 {
     public static function configure(Table $table): Table
     {
+        $settings = app(GeneralSettings::class);
+        $lbpRate = $settings->show_lbp_prices ? $settings->lbp_exchange_rate : null;
+
         return $table
             ->columns([
                 SpatieMediaLibraryImageColumn::make('image')
@@ -42,6 +46,7 @@ class ProductsTable
                     ->toggleable(),
                 PriceColumn::make('price')
                     ->label('Price')
+                    ->lbpRate($lbpRate)
                     ->sortable(query: fn (Builder $query, string $direction): Builder => $query->orderByEffectivePrice($direction)),
                 TextColumn::make('preparation_time')
                     ->label('Prep. time')
