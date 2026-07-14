@@ -28,13 +28,13 @@ const mediaQuery = () => {
 };
 
 const handleSystemThemeChange = () => {
-    const currentAppearance = localStorage.getItem('appearance') as Appearance | null;
+    const currentAppearance = localStorage.getItem('theme') as Appearance | null;
 
     applyTheme(currentAppearance || 'system');
 };
 
 export function initializeTheme() {
-    const savedAppearance = (localStorage.getItem('appearance') as Appearance | null) || 'system';
+    const savedAppearance = (localStorage.getItem('theme') as Appearance | null) || 'system';
 
     applyTheme(savedAppearance);
 
@@ -47,14 +47,14 @@ export function useAppearance() {
     const updateAppearance = useCallback((mode: Appearance) => {
         setAppearance(mode);
 
-        localStorage.setItem('appearance', mode);
-        setCookie('appearance', mode);
+        localStorage.setItem('theme', mode);
+        setCookie('theme', mode);
 
         applyTheme(mode);
     }, []);
 
     useEffect(() => {
-        const savedAppearance = localStorage.getItem('appearance') as Appearance | null;
+        const savedAppearance = localStorage.getItem('theme') as Appearance | null;
 
         updateAppearance(savedAppearance || 'system');
 

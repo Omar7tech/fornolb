@@ -8,10 +8,10 @@
     {{-- Apply the saved theme before paint to avoid a flash of the wrong appearance. --}}
     <script>
         (function () {
-            const appearance = localStorage.getItem('appearance') || 'system';
+            const theme = localStorage.getItem('theme') || 'system';
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-            if (appearance === 'dark' || (appearance === 'system' && prefersDark)) {
+            if (theme === 'dark' || (theme === 'system' && prefersDark)) {
                 document.documentElement.classList.add('dark');
             }
         })();
