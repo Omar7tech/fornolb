@@ -7,7 +7,7 @@ export default function Welcome() {
         <>
             <Head title="Forno Flat Bread Co." />
 
-            <div className="flex min-h-dvh flex-col bg-white dark:bg-brand-ink">
+            <div className="flex min-h-dvh flex-col">
                 <SiteHeader />
 
                 <div className="flex flex-1 flex-col items-center justify-center gap-8 px-6 py-16">
