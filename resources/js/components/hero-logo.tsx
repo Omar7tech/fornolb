@@ -11,7 +11,16 @@ export function HeroLogo({ className }: { className?: string }) {
             <defs>
                 <linearGradient id="forno-ring-teal" x1="0" y1="0" x2="1" y2="1">
                     <stop offset="0%" stopColor="var(--color-brand-teal-light)" />
-                    <stop offset="100%" stopColor="var(--color-brand-teal)" />
+                    <stop offset="50%" stopColor="var(--color-brand-teal)" />
+                    <stop offset="100%" stopColor="var(--color-brand-teal-light)" />
+                    <animateTransform
+                        attributeName="gradientTransform"
+                        type="rotate"
+                        from="0 0.5 0.5"
+                        to="360 0.5 0.5"
+                        dur="6s"
+                        repeatCount="indefinite"
+                    />
                 </linearGradient>
             </defs>
             <g transform="translate(0,599) scale(0.1,-0.1)" fill="currentColor" stroke="none">
