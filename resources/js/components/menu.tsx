@@ -10,9 +10,15 @@ export function Menu() {
                     id={`category-${category.id}`}
                     className="scroll-mt-30 pb-12 last:pb-0"
                 >
-                    <h2 className="mb-6 font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                        {category.label}
-                    </h2>
+                    <div className="mb-6 flex items-center gap-4">
+                        <span className="h-px flex-1 bg-border" />
+
+                        <h2 className="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                            {category.label}
+                        </h2>
+
+                        <span className="h-px flex-1 bg-border" />
+                    </div>
 
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                         {category.products.map((product) => (
