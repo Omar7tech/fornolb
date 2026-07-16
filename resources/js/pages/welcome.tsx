@@ -5,8 +5,9 @@ import { Hero } from '@/components/hero';
 import { Menu } from '@/components/menu';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
+import type { Category } from '@/types';
 
-export default function Welcome() {
+export default function Welcome({ categories }: { categories: Category[] }) {
     return (
         <>
             <Head title="Forno Flat Bread Co." />
@@ -16,8 +17,8 @@ export default function Welcome() {
 
                 <main className="flex flex-1 flex-col">
                     <Hero />
-                    <CategoryFilter />
-                    <Menu />
+                    <CategoryFilter categories={categories} />
+                    <Menu categories={categories} />
                 </main>
 
                 <SiteFooter />
