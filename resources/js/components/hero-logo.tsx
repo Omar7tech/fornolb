@@ -1,6 +1,16 @@
 import { cn } from '@/lib/utils';
 
-export function HeroLogo({ className }: { className?: string }) {
+export function HeroLogo({ className, variant = 'svg' }: { className?: string; variant?: 'svg' | 'image' }) {
+    if (variant === 'image') {
+        return (
+            <img
+                src="/logos/main-logo.png"
+                alt="Forno Flat Bread Co."
+                className={cn('h-auto w-full', className)}
+            />
+        );
+    }
+
     return (
         <svg
             viewBox="0 0 600 599"
@@ -37,7 +47,6 @@ export function HeroLogo({ className }: { className?: string }) {
                 <path d="M4195 2411 c-80 -36 -175 -164 -175 -235 0 -89 100 -85 318 11 8 3 12 -6 12 -30 0 -65 71 -56 101 12 13 28 16 29 73 28 50 -2 61 1 64 16 3 14 -4 17 -39 17 -40 0 -109 33 -109 53 0 15 -27 6 -46 -14 -41 -45 -227 -119 -300 -119 -31 0 -34 3 -34 28 0 42 59 132 115 174 66 50 79 50 70 -2 -5 -32 -4 -40 9 -40 31 0 50 82 24 108 -16 16 -36 15 -83 -7z m239 -178 c-4 -16 -15 -41 -25 -58 -18 -29 -19 -29 -19 -6 0 21 35 91 46 91 2 0 1 -12 -2 -27z" />
                 <path d="M1498 2328 c-19 -34 -31 -44 -70 -55 -60 -17 -70 -49 -12 -39 l35 7 -23 -40 c-26 -45 -30 -48 -48 -26 -17 20 -40 19 -40 -2 0 -10 16 -29 35 -42 43 -29 50 -24 89 58 31 63 42 71 109 71 26 0 37 4 37 15 0 11 -12 15 -45 15 l-46 0 16 30 c33 63 -1 72 -37 8z" />
                 <path d="M4621 2141 c-12 -21 -5 -31 20 -31 19 0 29 17 21 38 -6 18 -30 15 -41 -7z" />
-                <path d="M4700 2085 c0 -3 2 -5 5 -5 3 0 5 2 5 5 0 3 -2 5 -5 5 -3 0 -5 -2 -5 -5z" />
             </g>
         </svg>
     );
