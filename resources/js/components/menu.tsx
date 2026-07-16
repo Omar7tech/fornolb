@@ -8,6 +8,9 @@ export function Menu({ categories }: { categories: Category[] }) {
                 <section
                     key={category.id}
                     id={`category-${category.slug}`}
+                    // Clears the sticky header plus the pill bar, so a jumped-to
+                    // heading isn't parked underneath them. Keep in step with
+                    // ACTIVE_OFFSET in category-filter.
                     className="scroll-mt-32 pb-12 last:pb-0"
                 >
                     {/* Anchored left so the heading lines up with the cards below,
