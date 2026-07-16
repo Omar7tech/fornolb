@@ -57,7 +57,7 @@ export function ProductCard({ product }: { product: Product }) {
 
                     <div className="flex min-w-0 flex-1 flex-col">
                         <div className="flex items-center gap-1.5">
-                            <h3 className="min-w-0 flex-1 truncate text-sm leading-tight font-semibold">
+                            <h3 className="min-w-0 flex-1 truncate text-lg leading-tight font-semibold">
                                 {product.title}
                             </h3>
 
@@ -73,11 +73,11 @@ export function ProductCard({ product }: { product: Product }) {
                         </div>
 
                         {product.description && (
-                            <p className="truncate text-xs text-muted-foreground">{product.description}</p>
+                            <p className="line-clamp-3 text-xs text-muted-foreground">{product.description}</p>
                         )}
 
                         <div className="mt-auto flex items-center justify-between gap-2 pt-1.5">
-                            <ProductPrice basePrice={basePrice} discountPrice={discountPrice} />
+                            <ProductPrice basePrice={basePrice} discountPrice={discountPrice} size="lg" />
                         </div>
                     </div>
                 </button>
