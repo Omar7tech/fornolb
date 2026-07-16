@@ -32,7 +32,9 @@ export default function Welcome({ categories }: { categories: Category[] }) {
                 <main className="flex flex-1 flex-col">
                     <Hero />
 
-                    <div className="mx-auto w-full max-w-6xl px-4 pb-3 sm:px-6">
+                    {/* No bottom padding: the sticky bar below brings its own
+                        pt-2.5, which is the whole gap. */}
+                    <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
                         <MenuSearch value={query} onChange={setQuery} />
                     </div>
 
