@@ -23,7 +23,8 @@ export function SiteFooter() {
                         />
 
                         <p className="mt-3 text-sm text-muted-foreground">
-                            Stone-baked manakish, pies and pizza, made fresh every morning.
+                            <span className="font-medium text-foreground">One oven. Two traditions.</span>{' '}
+                            Manakish, pizza, wraps and pasta.
                         </p>
 
                         <FooterSocials />
