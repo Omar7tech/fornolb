@@ -15,7 +15,7 @@ export function VariantSelector({
 }) {
     return (
         <div className="flex flex-col gap-1.5">
-            <span className="inline-flex items-center gap-1 text-xs font-medium tracking-wider text-muted-foreground uppercase">
+            <span className="inline-flex items-center gap-1 text-[10px] font-medium tracking-wider text-muted-foreground uppercase">
                 <Layers className="size-3" />
                 Choose an option
             </span>
@@ -35,9 +35,7 @@ export function VariantSelector({
                             aria-pressed={selected}
                             onClick={() => onSelect(index)}
                             className={cn(
-                                // min-h-11 keeps the thumb target at 44px: this is the
-                                // main thing people press on the menu.
-                                'min-h-11 min-w-0 flex-1 truncate px-2 py-1.5 text-xs font-medium transition-colors not-first:border-l not-first:border-border focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none focus-visible:-outline-offset-2',
+                                'min-w-0 flex-1 truncate px-2 py-1.5 text-xs font-medium transition-colors not-first:border-l not-first:border-border focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none focus-visible:-outline-offset-2',
                                 selected
                                     ? 'bg-brand-teal text-white'
                                     : 'bg-card text-card-foreground hover:bg-muted',
