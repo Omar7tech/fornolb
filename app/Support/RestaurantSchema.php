@@ -90,6 +90,9 @@ class RestaurantSchema
             'addressLocality' => config('seo.address.locality'),
             'addressRegion' => config('seo.address.region'),
             'addressCountry' => config('seo.address.country'),
+            // Google's own identifier for the spot, and the most precise thing
+            // available given Aley addresses aren't street-numbered.
+            'description' => config('seo.address.plus_code'),
         ], static fn (mixed $value): bool => $value !== null);
     }
 

@@ -63,18 +63,21 @@ return [
     | `display` is the line the footer shows; the rest is the structured address
     | for search engines. Both come from here so they can't drift apart.
     |
-    | TODO: `street` is still unset. It's optional — it's left out of the
-    | structured data while empty — but it should match the Google Business
-    | Profile exactly, character for character, when you add it.
+    | The wording matches the Google Business Profile ("West side, Aley") on
+    | purpose. Google ties a site to a listing partly by the name, address and
+    | phone agreeing, so these should be changed together with the profile, not
+    | independently of it.
     |
     */
 
     'address' => [
-        'display' => 'Aley, Lebanon',
-        'street' => null,
+        'display' => 'West side, Aley, Lebanon',
+        'street' => 'West side',
         'locality' => 'Aley',
         'region' => 'Mount Lebanon',
         'country' => 'LB',
+        // Google's Plus Code for the shop, from the listing.
+        'plus_code' => 'RH4V+7M Aley',
     ],
 
     'geo' => [
