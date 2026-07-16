@@ -5,11 +5,11 @@ export function Menu({ categories }: { categories: Category[] }) {
     return (
         <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6">
             {categories.map((category) => (
-                <section key={category.id} id={`category-${category.slug}`} className="scroll-mt-30 pb-12 last:pb-0">
+                <section key={category.id} id={`category-${category.slug}`} className="scroll-mt-20 pb-12 last:pb-0">
                     <div className="mb-3 flex items-center gap-4">
                         <span className="h-px flex-1 bg-border" />
 
-                        <h2 className="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                        <h2 className="font-heading text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
                             {category.title}
                         </h2>
 
