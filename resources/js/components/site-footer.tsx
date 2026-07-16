@@ -1,5 +1,4 @@
-import { MapPin, Phone } from 'lucide-react';
-
+import { FooterContact } from '@/components/footer-contact';
 import { FooterHours } from '@/components/footer-hours';
 import { FooterSocials } from '@/components/footer-socials';
 
@@ -24,19 +23,7 @@ export function SiteFooter() {
 
                     <FooterHours />
 
-                    <div>
-                        <h4 className="text-sm font-semibold text-foreground">Find us</h4>
-                        <ul className="mt-2 space-y-2 text-sm text-muted-foreground">
-                            <li className="flex items-center gap-2">
-                                <MapPin className="size-4 shrink-0" />
-                                Main Street, Beirut
-                            </li>
-                            <li className="flex items-center gap-2">
-                                <Phone className="size-4 shrink-0" />
-                                +961 1 234 567
-                            </li>
-                        </ul>
-                    </div>
+                    <FooterContact />
                 </div>
 
                 <div className="mt-10 border-t border-border pt-6">

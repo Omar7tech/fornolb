@@ -102,6 +102,56 @@ class ManageGeneral extends SettingsPage
                                         JS),
                             ]),
 
+                        Tab::make('Contact')
+                            ->icon(Heroicon::OutlinedMapPin)
+                            ->schema([
+                                Toggle::make('show_address')
+                                    ->label('Show location')
+                                    ->helperText('Shows the address in the storefront footer.')
+                                    ->default(true)
+                                    ->columnSpanFull(),
+
+                                TextInput::make('address')
+                                    ->label('Address')
+                                    ->validationAttribute('address')
+                                    ->helperText('How the location reads in the footer.')
+                                    ->maxLength(255)
+                                    ->requiredIf('show_address', true)
+                                    ->columnSpanFull()
+                                    ->visibleJs(<<<'JS'
+                                        $get('show_address')
+                                        JS),
+
+                                TextInput::make('address_map_url')
+                                    ->label('Google Maps link')
+                                    ->validationAttribute('Google Maps link')
+                                    ->helperText('Optional. With a link the address opens the map; without one it stays plain text.')
+                                    ->url()
+                                    ->maxLength(255)
+                                    ->columnSpanFull()
+                                    ->visibleJs(<<<'JS'
+                                        $get('show_address')
+                                        JS),
+
+                                Toggle::make('show_phone')
+                                    ->label('Show phone number')
+                                    ->helperText('Shows the number in the storefront footer as a tap-to-call link.')
+                                    ->default(true)
+                                    ->columnSpanFull(),
+
+                                TextInput::make('phone_number')
+                                    ->label('Phone number')
+                                    ->validationAttribute('phone number')
+                                    ->helperText('Include the country code.')
+                                    ->tel()
+                                    ->maxLength(255)
+                                    ->requiredIf('show_phone', true)
+                                    ->columnSpanFull()
+                                    ->visibleJs(<<<'JS'
+                                        $get('show_phone')
+                                        JS),
+                            ]),
+
                         Tab::make('LBP Pricing')
                             ->icon(Heroicon::OutlinedCurrencyDollar)
                             ->schema([

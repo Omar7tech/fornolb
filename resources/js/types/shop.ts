@@ -20,6 +20,17 @@ export type Shop = {
     openingHours: OpeningHours[];
 };
 
+/**
+ * The shop's contact details for the footer. A field is null when it's unset or
+ * switched off in the settings, so anything present here is meant to be shown.
+ */
+export type Contact = {
+    address: string | null;
+    /** The Google Maps link for the address; null means render it as plain text. */
+    mapUrl: string | null;
+    phone: string | null;
+};
+
 /** The floating WhatsApp chat badge config. */
 export type WhatsAppBadge = {
     /** Whether the badge is switched on *and* has a number to send to. */
