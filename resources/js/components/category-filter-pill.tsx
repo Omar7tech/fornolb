@@ -17,7 +17,7 @@ export function CategoryFilterPill({
             onClick={onClick}
             aria-pressed={isActive}
             className={cn(
-                'rounded-full border px-3.5 py-1.5 text-sm font-medium whitespace-nowrap transition-colors',
+                'inline-flex min-h-11 items-center rounded-full border px-3.5 text-sm font-medium whitespace-nowrap transition-colors',
                 'focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none',
                 isActive
                     ? 'border-transparent bg-primary text-primary-foreground'

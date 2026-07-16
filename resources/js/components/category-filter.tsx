@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { CategoryFilterPill } from '@/components/category-filter-pill';
+import { scrollBehavior } from '@/lib/utils';
 import type { Category } from '@/types';
 
 /**
@@ -61,7 +62,7 @@ export function CategoryFilter({ categories }: { categories: Category[] }) {
         pendingSlug.current = slug;
         setActiveSlug(slug);
 
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        section.scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
     };
 
     useEffect(() => {
@@ -136,7 +137,7 @@ export function CategoryFilter({ categories }: { categories: Category[] }) {
 
         list.scrollTo({
             left: pill.offsetLeft - list.clientWidth / 2 + pill.clientWidth / 2,
-            behavior: 'smooth',
+            behavior: scrollBehavior(),
         });
     }, [activeSlug, categories]);
 

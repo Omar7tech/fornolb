@@ -13,7 +13,10 @@ export function FooterSocials() {
     }
 
     return (
-        <ul className="mt-4 flex items-center gap-4">
+        // The padding is the tap target, not decoration: it takes the 24px icons
+        // to 44px without drawing anything. The negative margin keeps the first
+        // icon optically aligned with the text above.
+        <ul className="mt-2 -ml-2.5 flex items-center">
             {socials.map((social) => (
                 <li key={`${social.platform}-${social.url}`}>
                     <a
@@ -22,7 +25,7 @@ export function FooterSocials() {
                         rel="noreferrer"
                         aria-label={social.label}
                         title={social.label}
-                        className="block rounded-sm opacity-80 transition-opacity hover:opacity-100 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                        className="block rounded-sm p-2.5 opacity-80 transition-opacity hover:opacity-100 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                     >
                         {social.icon ? (
                             <img src={social.icon} alt="" className="size-6" />

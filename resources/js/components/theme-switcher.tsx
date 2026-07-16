@@ -14,6 +14,8 @@ export function ThemeSwitcher() {
         <Button
             variant="ghost"
             size="icon"
+            // The size-8 default is a 32px target; the header has room for 44.
+            className="size-11"
             aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
             onClick={() => updateAppearance(isDark ? 'light' : 'dark')}
         >

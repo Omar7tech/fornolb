@@ -66,7 +66,7 @@ export function ProductCard({ product }: { product: Product }) {
                             <ProductDietIcons product={product} />
 
                             {product.is_new && (
-                                <span className="shrink-0 rounded-full bg-brand-teal px-2 py-0.5 text-[10px] font-bold tracking-wide text-white uppercase">
+                                <span className="shrink-0 rounded-full bg-brand-teal px-2 py-0.5 text-xs font-bold tracking-wide text-white uppercase">
                                     New
                                 </span>
                             )}

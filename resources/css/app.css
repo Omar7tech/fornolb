@@ -242,6 +242,20 @@
     }
 }
 
+/* Some people get motion sickness or migraines from movement on screen, and the
+   OS setting is how they say so. Honour it everywhere rather than per-component:
+   nothing here is load-bearing enough to be worth the exception. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* Held on <html> only while the theme class is swapped, so every surface
    repaints in the same frame. Without it the elements carrying `transition-*`
    fade to their new colour while everything else flips instantly, and the
