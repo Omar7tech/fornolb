@@ -42,7 +42,7 @@ export function ProductCard({ product }: { product: Product }) {
                     onClick={() => setOpen(true)}
                     className="flex w-full cursor-pointer gap-3 rounded-lg text-left focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                 >
-                    {image ? (
+                    {image && (
                         <SmartImage
                             src={image}
                             alt={product.title}
@@ -50,8 +50,6 @@ export function ProductCard({ product }: { product: Product }) {
                             imgClassName="object-cover transition-transform duration-300 group-hover:scale-105"
                             draggable={false}
                         />
-                    ) : (
-                        <div className="size-20 shrink-0 overflow-hidden rounded-md bg-muted md:size-28" />
                     )}
 
                     <div className="flex min-w-0 flex-1 flex-col">
