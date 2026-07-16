@@ -6,7 +6,9 @@ return new class extends SettingsMigration
 {
     public function up(): void
     {
-        $this->migrator->add('general.phone_number', '+961 1 234 567');
+        // Starts empty rather than with a sample: an invented number would be
+        // published to the footer and the structured data as if it were real.
+        $this->migrator->add('general.phone_number', null);
     }
 
     public function down(): void
