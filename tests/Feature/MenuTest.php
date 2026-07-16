@@ -1,11 +1,25 @@
 <?php
 
+use App\Enums\PriceDisplay;
 use App\Models\Category;
 use App\Models\Product;
+use App\Settings\GeneralSettings;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Inertia\Testing\AssertableInertia;
 
 uses(RefreshDatabase::class);
+
+/**
+ * Point the storefront's shared pricing settings at a known state.
+ */
+function pricingSettings(PriceDisplay $display, bool $showLbp = true, ?float $rate = 90000): void
+{
+    $settings = app(GeneralSettings::class);
+    $settings->price_display = $display;
+    $settings->show_lbp_prices = $showLbp;
+    $settings->lbp_exchange_rate = $rate;
+    $settings->save();
+}
 
 test('the menu page lists active categories with their products', function () {
     $category = Category::factory()->create(['title' => 'Manakish', 'is_active' => true]);
@@ -81,4 +95,32 @@ test('a discounted product exposes both prices to the storefront', function () {
             ->where('categories.0.products.0.price', 12.5)
             ->where('categories.0.products.0.discount_price', 9.75)
         );
+});
+
+test('the storefront is told which currency to display', function () {
+    pricingSettings(PriceDisplay::BOTH);
+
+    $this->get(route('home'))
+        ->assertOk()
+        ->assertInertia(fn (AssertableInertia $page) => $page
+            ->where('pricing.display', 'both')
+            // A whole float survives JSON as an int, so compare loosely here.
+            ->where('pricing.lbpRate', fn (int|float $rate): bool => (float) $rate === 90000.0)
+        );
+});
+
+test('the lbp rate is withheld when lbp prices are switched off', function () {
+    pricingSettings(PriceDisplay::LBP, showLbp: false);
+
+    $this->get(route('home'))
+        ->assertOk()
+        ->assertInertia(fn (AssertableInertia $page) => $page->where('pricing.lbpRate', null));
+});
+
+test('the lbp rate is withheld when no exchange rate is configured', function () {
+    pricingSettings(PriceDisplay::BOTH, rate: null);
+
+    $this->get(route('home'))
+        ->assertOk()
+        ->assertInertia(fn (AssertableInertia $page) => $page->where('pricing.lbpRate', null));
 });

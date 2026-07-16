@@ -1,3 +1,10 @@
+/** Mirrors the `pricing` prop shared from `HandleInertiaRequests`. */
+export type Pricing = {
+    display: 'usd' | 'lbp' | 'both';
+    /** LBP per 1 USD, or null when LBP prices are unavailable. */
+    lbpRate: number | null;
+};
+
 /** Mirrors `App\Http\Resources\ProductResource`. */
 export type Product = {
     id: number;
