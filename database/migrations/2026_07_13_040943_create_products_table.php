@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->boolean('is_featured')->default(false);
             $table->boolean('is_new')->default(false);
+            $table->boolean('is_spicy')->default(false);
+            $table->boolean('is_vegetarian')->default(false);
             $table->decimal('price', 8, 2)->default(0);
             $table->decimal('discount_price', 8, 2)->nullable();
             $table->json('variants')->nullable();

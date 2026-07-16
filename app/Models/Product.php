@@ -26,6 +26,8 @@ class Product extends Model implements HasMedia
         'variants' => 'array',
         'is_featured' => 'boolean',
         'is_new' => 'boolean',
+        'is_spicy' => 'boolean',
+        'is_vegetarian' => 'boolean',
         'is_active' => 'boolean',
     ];
 

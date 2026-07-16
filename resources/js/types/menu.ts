@@ -16,6 +16,8 @@ export type Product = {
     preparation_time: number | null;
     is_featured: boolean;
     is_new: boolean;
+    is_spicy: boolean;
+    is_vegetarian: boolean;
     variants: ProductVariant[] | null;
     image: string | null;
     thumb: string | null;

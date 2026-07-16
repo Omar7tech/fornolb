@@ -64,6 +64,12 @@ class ProductInfolist
                                 IconEntry::make('is_new')
                                     ->label('New')
                                     ->boolean(),
+                                IconEntry::make('is_spicy')
+                                    ->label('Spicy')
+                                    ->boolean(),
+                                IconEntry::make('is_vegetarian')
+                                    ->label('Vegetarian')
+                                    ->boolean(),
                             ])
                             ->columns(2),
                         Tab::make('Variants')

@@ -40,19 +40,19 @@ class ProductSeeder extends Seeder
      * The menu, keyed by category title. Prices are in USD; the storefront
      * converts to LBP at the configured rate.
      *
-     * @return array<string, list<array{title: string, description?: string, price: float}>>
+     * @return array<string, list<array{title: string, description?: string, price: float, is_spicy?: bool, is_vegetarian?: bool}>>
      */
     protected function menu(): array
     {
         return [
             'Pizza Manousheh' => [
-                ['title' => 'Zaatar', 'price' => 1.00],
-                ['title' => 'Zaatar Deluxe', 'price' => 1.50],
-                ['title' => 'Zaatar ma3 Jebne', 'price' => 2.00],
-                ['title' => 'Kishk', 'price' => 1.25],
-                ['title' => 'Kishk Deluxe', 'price' => 2.00],
-                ['title' => 'Kishk ma3 Jebne', 'price' => 2.50],
-                ['title' => 'Akawi ma3 Mozza', 'price' => 2.50],
+                ['title' => 'Zaatar', 'price' => 1.00, 'is_vegetarian' => true],
+                ['title' => 'Zaatar Deluxe', 'price' => 1.50, 'is_vegetarian' => true],
+                ['title' => 'Zaatar ma3 Jebne', 'price' => 2.00, 'is_vegetarian' => true],
+                ['title' => 'Kishk', 'price' => 1.25, 'is_vegetarian' => true],
+                ['title' => 'Kishk Deluxe', 'price' => 2.00, 'is_vegetarian' => true],
+                ['title' => 'Kishk ma3 Jebne', 'price' => 2.50, 'is_vegetarian' => true],
+                ['title' => 'Akawi ma3 Mozza', 'price' => 2.50, 'is_vegetarian' => true],
             ],
 
             'Pick n Roll' => [
@@ -70,6 +70,7 @@ class ProductSeeder extends Seeder
                     'title' => 'Peri Peri',
                     'description' => 'Grilled chicken, melted cheese, garlic aioli, pickles, shredded iceberg, tomato, spicy peri peri sauce.',
                     'price' => 4.50,
+                    'is_spicy' => true,
                 ],
                 [
                     'title' => 'Francisco Chicken',
@@ -98,11 +99,13 @@ class ProductSeeder extends Seeder
                     'title' => 'Vegetarian',
                     'description' => 'Tomato sauce, mushroom, peppers, onion, cherry tomato, sweet corn, olives, mozzarella, baby rocca, parmigiana.',
                     'price' => 10.50,
+                    'is_vegetarian' => true,
                 ],
                 [
                     'title' => 'Margarita',
                     'description' => 'Tomato sauce, mozzarella, parmigiana.',
                     'price' => 9.00,
+                    'is_vegetarian' => true,
                 ],
                 [
                     'title' => 'Bbq Chicken',
@@ -113,6 +116,7 @@ class ProductSeeder extends Seeder
                     'title' => 'Creole Chicken',
                     'description' => 'Creole sauce, chicken, onion, pepper, cherry tomato, mozzarella.',
                     'price' => 11.50,
+                    'is_spicy' => true,
                 ],
                 [
                     'title' => 'Pepperoni Cheese',
@@ -127,6 +131,7 @@ class ProductSeeder extends Seeder
                 [
                     'title' => 'Double Double Cheese',
                     'price' => 9.50,
+                    'is_vegetarian' => true,
                 ],
                 [
                     'title' => 'Nyk Bbq Beef',
@@ -136,6 +141,7 @@ class ProductSeeder extends Seeder
                     'title' => 'Truffle Cream',
                     'description' => 'Truffle sauce, mushroom, onion, mozzarella, baby rocca, balsamic, parmigiana.',
                     'price' => 13.00,
+                    'is_vegetarian' => true,
                 ],
             ],
 
@@ -144,6 +150,7 @@ class ProductSeeder extends Seeder
                     'title' => 'Halloumi Mozza Pesto',
                     'description' => 'Grilled halloumi, melted cheese, a touch of pesto basil, cherry tomato, baby rocca, white sauce.',
                     'price' => 7.75,
+                    'is_vegetarian' => true,
                 ],
                 [
                     'title' => 'Hawain',
@@ -154,6 +161,7 @@ class ProductSeeder extends Seeder
                     'title' => 'Hot Honey Pepperoni',
                     'description' => 'Pizza sauce, pepperoni, melted cheese, hot honey, baby rocca.',
                     'price' => 6.50,
+                    'is_spicy' => true,
                 ],
                 [
                     'title' => 'Pesto Chicken',
@@ -196,21 +204,21 @@ class ProductSeeder extends Seeder
             ],
 
             'Starters' => [
-                ['title' => 'Fries', 'price' => 2.50],
-                ['title' => 'Mozzarella Sticks', 'description' => '5 pieces.', 'price' => 5.00],
+                ['title' => 'Fries', 'price' => 2.50, 'is_vegetarian' => true],
+                ['title' => 'Mozzarella Sticks', 'description' => '5 pieces.', 'price' => 5.00, 'is_vegetarian' => true],
                 ['title' => '3 Pcs Crispy with Fries', 'price' => 5.00],
-                ['title' => 'Truffle Fries', 'price' => 5.00],
+                ['title' => 'Truffle Fries', 'price' => 5.00, 'is_vegetarian' => true],
             ],
 
             'Salad' => [
-                ['title' => 'Cezar Salad', 'price' => 5.00],
+                ['title' => 'Cezar Salad', 'price' => 5.00, 'is_vegetarian' => true],
                 ['title' => 'Chicken Cezar Salad', 'price' => 6.50],
-                ['title' => 'Forno Salad', 'price' => 8.00],
+                ['title' => 'Forno Salad', 'price' => 8.00, 'is_vegetarian' => true],
             ],
 
             'Sweets' => [
-                ['title' => 'Nutella Banana', 'price' => 4.00],
-                ['title' => 'Areshy w 3asal', 'price' => 5.00],
+                ['title' => 'Nutella Banana', 'price' => 4.00, 'is_vegetarian' => true],
+                ['title' => 'Areshy w 3asal', 'price' => 5.00, 'is_vegetarian' => true],
             ],
         ];
     }

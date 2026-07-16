@@ -28,6 +28,8 @@ class ProductResource extends JsonResource
             'preparation_time' => $this->preparation_time,
             'is_featured' => (bool) $this->is_featured,
             'is_new' => (bool) $this->is_new,
+            'is_spicy' => (bool) $this->is_spicy,
+            'is_vegetarian' => (bool) $this->is_vegetarian,
             'variants' => $this->variants,
             'image' => $this->getFirstMediaUrl('image', 'webp') ?: null,
             'thumb' => $this->getFirstMediaUrl('image', 'thumb') ?: null,

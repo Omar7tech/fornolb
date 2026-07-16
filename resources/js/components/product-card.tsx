@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import { HeroLogo } from '@/components/hero-logo';
 import { ProductDialog } from '@/components/product-dialog';
+import { ProductDietIcons } from '@/components/product-diet-icons';
 import { ProductPrice } from '@/components/product-price';
 import { SmartImage } from '@/components/smart-image';
 import { VariantSelector } from '@/components/variant-selector';
@@ -60,6 +61,8 @@ export function ProductCard({ product }: { product: Product }) {
                             <h3 className="min-w-0 flex-1 truncate text-lg leading-tight font-semibold">
                                 {product.title}
                             </h3>
+
+                            <ProductDietIcons product={product} />
 
                             {product.is_new && (
                                 <span className="shrink-0 rounded-full bg-brand-teal px-2 py-0.5 text-[10px] font-bold tracking-wide text-white uppercase">

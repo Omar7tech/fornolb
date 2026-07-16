@@ -77,6 +77,12 @@ class ProductForm
                             ->schema([
                                 Toggle::make('is_featured'),
                                 Toggle::make('is_new'),
+                                Toggle::make('is_spicy')
+                                    ->label('Spicy')
+                                    ->helperText('Shows a chilli icon on the menu.'),
+                                Toggle::make('is_vegetarian')
+                                    ->label('Vegetarian')
+                                    ->helperText('Shows a vegetarian icon on the menu.'),
                             ])
                             ->columns(2),
                         Tab::make('Variants')

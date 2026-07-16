@@ -45,6 +45,12 @@ class ProductsTable
                 ToggleColumn::make('is_new')
                     ->label('New')
                     ->toggleable(),
+                ToggleColumn::make('is_spicy')
+                    ->label('Spicy')
+                    ->toggleable(),
+                ToggleColumn::make('is_vegetarian')
+                    ->label('Vegetarian')
+                    ->toggleable(),
                 PriceColumn::make('price')
                     ->label('Price')
                     ->lbpRate($lbpRate)
@@ -117,6 +123,10 @@ class ProductsTable
                     ->label('Featured'),
                 TernaryFilter::make('is_new')
                     ->label('New'),
+                TernaryFilter::make('is_spicy')
+                    ->label('Spicy'),
+                TernaryFilter::make('is_vegetarian')
+                    ->label('Vegetarian'),
             ])
             ->filtersFormColumns(2)
             ->recordActions([

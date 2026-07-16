@@ -27,6 +27,8 @@ class ProductFactory extends Factory
             'description' => fake()->sentence(),
             'is_featured' => fake()->boolean(20),
             'is_new' => fake()->boolean(30),
+            'is_spicy' => fake()->boolean(15),
+            'is_vegetarian' => fake()->boolean(25),
             'price' => $price,
             'discount_price' => fake()->boolean(40) ? fake()->randomFloat(2, $price * 0.5, $price * 0.9) : null,
             'preparation_time' => fake()->numberBetween(10, 60),

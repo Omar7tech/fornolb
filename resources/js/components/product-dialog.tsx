@@ -1,5 +1,6 @@
 import { Clock, Star } from 'lucide-react';
 
+import { ProductDietIcons } from '@/components/product-diet-icons';
 import { ProductPrice } from '@/components/product-price';
 import { SmartImage } from '@/components/smart-image';
 import { VariantSelector } from '@/components/variant-selector';
@@ -57,6 +58,8 @@ export function ProductDialog({
                     <DialogHeader className="shrink-0">
                         <DialogTitle className="flex items-start gap-2 pr-6">
                             <span className="flex-1">{product.title}</span>
+
+                            <ProductDietIcons product={product} className="mt-0.5" />
 
                             {product.is_featured && (
                                 <Star className="mt-0.5 size-5 shrink-0 fill-amber-400 text-amber-400" />
