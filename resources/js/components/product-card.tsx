@@ -32,7 +32,7 @@ export function ProductCard({ product }: { product: Product }) {
             <div
                 className={cn(
                     'group flex h-full min-w-0 flex-col rounded-xl border bg-card p-3 text-card-foreground shadow-sm transition-all hover:shadow-md',
-                    product.is_featured ? 'border-amber-400' : 'border-border hover:border-brand-teal/40',
+                    product.is_featured ? 'border-brand-teal dark:border-brand-teal-light' : 'border-border hover:border-brand-teal/40',
                 )}
             >
                 {/* The variant picker below has its own buttons, so only this
