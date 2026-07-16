@@ -3,14 +3,14 @@ import { menuCategories } from '@/lib/menu-data';
 
 export function Menu() {
     return (
-        <div className="mx-auto w-full max-w-6xl px-6 py-12">
+        <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6">
             {menuCategories.map((category) => (
                 <section
                     key={category.id}
                     id={`category-${category.id}`}
                     className="scroll-mt-30 pb-12 last:pb-0"
                 >
-                    <div className="mb-6 flex items-center gap-4">
+                    <div className="mb-3 flex items-center gap-4">
                         <span className="h-px flex-1 bg-border" />
 
                         <h2 className="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">

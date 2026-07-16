@@ -11,8 +11,8 @@ export function CategoryFilter() {
 
     return (
         <section className="sticky top-0 z-40 w-full border-b border-border bg-background">
-            <div className="mx-auto w-full max-w-6xl px-6 py-6">
-                <div className="no-scrollbar scroll-fade-x -mx-6 flex gap-2 overflow-x-auto px-6">
+            <div className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6">
+                <div className="no-scrollbar scroll-fade-x -mx-4 flex gap-2 overflow-x-auto px-4 sm:-mx-6 sm:px-6">
                     {menuCategories.map((category) => (
                         <CategoryFilterPill
                             key={category.id}
