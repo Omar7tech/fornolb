@@ -48,6 +48,19 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            'shop' => [
+                // Authoritative open/closed snapshot for this request (used for the
+                // initial render); the client can recompute live in automatic mode.
+                'isOpen' => $settings->isCurrentlyOpen(),
+                'statusMode' => $settings->status_mode->value,
+                'isManuallyOpen' => $settings->is_open,
+                'openingHours' => array_map(static fn (array $hours): array => [
+                    'day' => $hours['day'],
+                    'isClosed' => $hours['is_closed'],
+                    'opensAt' => $hours['opens_at'],
+                    'closesAt' => $hours['closes_at'],
+                ], array_values($settings->opening_hours)),
+            ],
             'pricing' => [
                 'display' => $settings->price_display->value,
                 'lbpRate' => $lbpEnabled ? (float) $settings->lbp_exchange_rate : null,

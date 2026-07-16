@@ -1,5 +1,7 @@
 import { MapPin, Phone } from 'lucide-react';
 
+import { FooterHours } from '@/components/footer-hours';
+
 export function SiteFooter() {
     return (
         <footer className="w-full border-t border-border bg-background">
@@ -12,14 +14,7 @@ export function SiteFooter() {
                         </p>
                     </div>
 
-                    <div>
-                        <h4 className="font-heading text-sm font-semibold text-foreground">Opening hours</h4>
-                        <ul className="mt-2 space-y-1 text-sm text-muted-foreground">
-                            <li>Mon – Fri &middot; 7:00 – 20:00</li>
-                            <li>Saturday &middot; 8:00 – 22:00</li>
-                            <li>Sunday &middot; 8:00 – 16:00</li>
-                        </ul>
-                    </div>
+                    <FooterHours />
 
                     <div>
                         <h4 className="font-heading text-sm font-semibold text-foreground">Find us</h4>
