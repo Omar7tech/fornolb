@@ -20,6 +20,13 @@ export type Shop = {
     openingHours: OpeningHours[];
 };
 
+/** The floating WhatsApp chat badge config. */
+export type WhatsAppBadge = {
+    /** Whether the badge is switched on *and* has a number to send to. */
+    show: boolean;
+    number: string | null;
+};
+
 /** A social media link from the settings, ready to render in the footer. */
 export type Social = {
     platform: string;

@@ -5,6 +5,7 @@ import { Hero } from '@/components/hero';
 import { Menu } from '@/components/menu';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
+import { WhatsAppFab } from '@/components/whatsapp-fab';
 import type { Category } from '@/types';
 
 export default function Welcome({ categories }: { categories: Category[] }) {
@@ -23,6 +24,8 @@ export default function Welcome({ categories }: { categories: Category[] }) {
 
                 <SiteFooter />
             </div>
+
+            <WhatsAppFab />
         </>
     );
 }

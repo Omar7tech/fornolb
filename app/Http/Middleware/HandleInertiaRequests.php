@@ -66,6 +66,11 @@ class HandleInertiaRequests extends Middleware
                 'display' => $settings->price_display->value,
                 'lbpRate' => $lbpEnabled ? (float) $settings->lbp_exchange_rate : null,
             ],
+            // Floating WhatsApp chat badge config for the storefront.
+            'whatsappBadge' => [
+                'show' => $settings->show_whatsapp_badge && filled($settings->whatsapp_badge_number),
+                'number' => $settings->whatsapp_badge_number,
+            ],
             'socials' => collect($settings->social_links)
                 ->map(function ($link): ?array {
                     if (! is_array($link)) {
