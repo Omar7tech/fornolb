@@ -21,13 +21,14 @@ export type Shop = {
 };
 
 /**
- * The shop's contact details for the footer. A field is null when it's unset or
- * switched off in the settings, so anything present here is meant to be shown.
+ * The shop's contact details for the footer. The location is fixed in config;
+ * the phone is null when switched off in the settings, so anything present here
+ * is meant to be shown.
  */
 export type Contact = {
-    address: string | null;
-    /** The Google Maps link for the address; null means render it as plain text. */
-    mapUrl: string | null;
+    address: string;
+    /** The Google Maps link the address points at. */
+    mapUrl: string;
     phone: string | null;
 };
 

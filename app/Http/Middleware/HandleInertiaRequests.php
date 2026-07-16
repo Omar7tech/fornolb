@@ -66,11 +66,13 @@ class HandleInertiaRequests extends Middleware
                 'display' => $settings->price_display->value,
                 'lbpRate' => $lbpEnabled ? (float) $settings->lbp_exchange_rate : null,
             ],
-            // Each line is withheld entirely when switched off, so the footer has
+            // The location is fixed, so it comes from config — the same source the
+            // structured data reads, so the footer and schema can't disagree. The
+            // phone is withheld entirely when switched off, leaving the footer
             // nothing to render rather than deciding visibility itself.
             'contact' => [
-                'address' => $settings->show_address ? $settings->address : null,
-                'mapUrl' => $settings->show_address ? $settings->address_map_url : null,
+                'address' => config('seo.address.display'),
+                'mapUrl' => config('seo.map_url'),
                 'phone' => $settings->show_phone ? $settings->phone_number : null,
             ],
             // Floating WhatsApp chat badge config for the storefront.

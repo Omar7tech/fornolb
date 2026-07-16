@@ -60,8 +60,8 @@ return [
     | The coordinates are the shop's pin on Google Maps, and are what tie this
     | site to that listing for "near me" searches.
     |
-    | Note: this is the structured address for search engines. The address the
-    | footer displays is the separate `address` setting in Filament.
+    | `display` is the line the footer shows; the rest is the structured address
+    | for search engines. Both come from here so they can't drift apart.
     |
     | TODO: `street` is still unset. It's optional — it's left out of the
     | structured data while empty — but it should match the Google Business
@@ -70,6 +70,7 @@ return [
     */
 
     'address' => [
+        'display' => 'Aley, Lebanon',
         'street' => null,
         'locality' => 'Aley',
         'region' => 'Mount Lebanon',
@@ -88,8 +89,8 @@ return [
     |
     | The canonical link to the Google Business Profile, by its permanent CID.
     | Unlike a copied maps.google.com URL it carries no session tracking and
-    | won't rot. Used for the structured data's `hasMap` when the Filament
-    | address link is empty.
+    | won't rot. Used for the footer address link and the structured data's
+    | `hasMap`.
     |
     */
 

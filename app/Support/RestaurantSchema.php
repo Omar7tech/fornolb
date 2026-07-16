@@ -54,7 +54,7 @@ class RestaurantSchema
             'telephone' => $this->settings->show_phone ? $this->settings->phone_number : null,
             'address' => $this->address(),
             'geo' => $this->geo(),
-            'hasMap' => $this->mapUrl(),
+            'hasMap' => config('seo.map_url'),
             'servesCuisine' => config('seo.cuisines'),
             'priceRange' => config('seo.price_range'),
             'currenciesAccepted' => config('seo.currency'),
@@ -91,18 +91,6 @@ class RestaurantSchema
             'addressRegion' => config('seo.address.region'),
             'addressCountry' => config('seo.address.country'),
         ], static fn (mixed $value): bool => $value !== null);
-    }
-
-    /**
-     * The link to the Google listing. Prefers whatever the footer points at, so
-     * the two never disagree, and falls back to the canonical CID link so the
-     * structured data doesn't depend on that field being filled in.
-     */
-    protected function mapUrl(): ?string
-    {
-        $configured = $this->settings->show_address ? $this->settings->address_map_url : null;
-
-        return blank($configured) ? config('seo.map_url') : $configured;
     }
 
     /**

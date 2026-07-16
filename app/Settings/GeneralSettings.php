@@ -35,23 +35,6 @@ class GeneralSettings extends Settings
     public array $opening_hours; // @phpstan-ignore missingType.iterableValue
 
     /**
-     * Whether the shop's location is shown in the storefront footer.
-     */
-    public bool $show_address;
-
-    /**
-     * The shop's address as it reads in the footer, e.g. "Main Street, Beirut".
-     * Only shown when {@see self::$show_address} is on.
-     */
-    public ?string $address;
-
-    /**
-     * The Google Maps link the footer address points at. Optional: without one
-     * the address is plain text rather than a link.
-     */
-    public ?string $address_map_url;
-
-    /**
      * Whether the shop's phone number is shown in the storefront footer.
      */
     public bool $show_phone;

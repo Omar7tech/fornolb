@@ -6,13 +6,11 @@ return new class extends SettingsMigration
 {
     public function up(): void
     {
-        $this->migrator->add('general.address', 'Main Street, Beirut');
         $this->migrator->add('general.phone_number', '+961 1 234 567');
     }
 
     public function down(): void
     {
         $this->migrator->delete('general.phone_number');
-        $this->migrator->delete('general.address');
     }
 };
