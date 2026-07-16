@@ -1,6 +1,7 @@
 import { MapPin, Phone } from 'lucide-react';
 
 import { FooterHours } from '@/components/footer-hours';
+import { FooterSocials } from '@/components/footer-socials';
 
 export function SiteFooter() {
     return (
@@ -8,10 +9,17 @@ export function SiteFooter() {
             <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6">
                 <div className="grid gap-8 sm:grid-cols-3">
                     <div>
-                        <h3 className="font-heading text-lg font-semibold text-foreground">Forno Flat Bread Co.</h3>
-                        <p className="mt-2 text-sm text-muted-foreground">
+                        <img
+                            src="/logos/flatbread.svg"
+                            alt="Forno Flat Bread Co."
+                            className="h-8 w-auto dark:invert"
+                        />
+
+                        <p className="mt-3 text-sm text-muted-foreground">
                             Stone-baked manakish, pies and pizza, made fresh every morning.
                         </p>
+
+                        <FooterSocials />
                     </div>
 
                     <FooterHours />
@@ -28,15 +36,6 @@ export function SiteFooter() {
                                 +961 1 234 567
                             </li>
                         </ul>
-
-                        <div className="mt-3 flex gap-4 text-sm">
-                            <a href="#" className="text-muted-foreground transition-colors hover:text-foreground">
-                                Instagram
-                            </a>
-                            <a href="#" className="text-muted-foreground transition-colors hover:text-foreground">
-                                Facebook
-                            </a>
-                        </div>
                     </div>
                 </div>
 

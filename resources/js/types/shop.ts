@@ -19,3 +19,13 @@ export type Shop = {
     /** The weekly schedule; only authoritative in `automatic` mode. */
     openingHours: OpeningHours[];
 };
+
+/** A social media link from the settings, ready to render in the footer. */
+export type Social = {
+    platform: string;
+    /** The brand name, or the custom name when the platform is `other`. */
+    label: string;
+    url: string;
+    /** Path to the brand icon, or null when the platform has no brand mark. */
+    icon: string | null;
+};

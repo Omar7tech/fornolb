@@ -22,4 +22,17 @@ enum SocialPlatform: string implements HasLabel
             self::OTHER => 'Other',
         };
     }
+
+    /**
+     * The public path to this platform's icon, served from `public/social-icons`.
+     * `OTHER` has no brand mark, so the storefront falls back to a generic icon.
+     */
+    public function getIconPath(): ?string
+    {
+        if ($this === self::OTHER) {
+            return null;
+        }
+
+        return "/social-icons/{$this->value}.svg";
+    }
 }
