@@ -13,7 +13,7 @@ export function FooterSocials() {
     }
 
     return (
-        <ul className="mt-4 flex items-center gap-3">
+        <ul className="mt-4 flex items-center gap-4">
             {socials.map((social) => (
                 <li key={`${social.platform}-${social.url}`}>
                     <a
@@ -22,12 +22,12 @@ export function FooterSocials() {
                         rel="noreferrer"
                         aria-label={social.label}
                         title={social.label}
-                        className="flex size-9 items-center justify-center rounded-full border border-border transition-colors hover:border-brand-teal/40 hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                        className="block rounded-sm opacity-80 transition-opacity hover:opacity-100 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                     >
                         {social.icon ? (
-                            <img src={social.icon} alt="" className="size-4.5" />
+                            <img src={social.icon} alt="" className="size-6" />
                         ) : (
-                            <Link2 className="size-4.5 text-muted-foreground" />
+                            <Link2 className="size-6 text-muted-foreground" />
                         )}
                     </a>
                 </li>
