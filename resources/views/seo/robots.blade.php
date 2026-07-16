@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /storage/
+
+Sitemap: {{ url('sitemap.xml') }}

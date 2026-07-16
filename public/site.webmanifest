@@ -1,6 +1,11 @@
 {
-  "name": "Forno",
+  "name": "Forno Flat Bread — Aley, Lebanon",
   "short_name": "Forno",
+  "description": "Forno Flat Bread in Aley, Lebanon. Manakish, pizza, wraps, pasta, salads and sweets, baked fresh to order.",
+  "start_url": "/",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["food", "restaurant"],
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -15,7 +20,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
+  "theme_color": "#1a6b6b",
+  "background_color": "#0e1f1c",
   "display": "standalone"
 }
