@@ -1,0 +1,24 @@
+import { ProductCard } from '@/components/product-card';
+import { menuCategories } from '@/lib/menu-data';
+
+export function Menu() {
+    return (
+        <div className="mx-auto w-full max-w-6xl px-6 py-12">
+            {menuCategories.map((category) => (
+                <section
+                    key={category.id}
+                    id={`category-${category.id}`}
+                    className="scroll-mt-6 pb-12 last:pb-0"
+                >
+                    <h2 className="mb-6 text-2xl font-semibold text-foreground">{category.label}</h2>
+
+                    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+                        {category.products.map((product) => (
+                            <ProductCard key={product.id} product={product} />
+                        ))}
+                    </div>
+                </section>
+            ))}
+        </div>
+    );
+}

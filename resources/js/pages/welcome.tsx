@@ -1,6 +1,8 @@
 import { Head } from '@inertiajs/react';
 
+import { CategoryFilter } from '@/components/category-filter';
 import { Hero } from '@/components/hero';
+import { Menu } from '@/components/menu';
 import { SiteHeader } from '@/components/site-header';
 
 export default function Welcome() {
@@ -13,6 +15,8 @@ export default function Welcome() {
 
                 <main className="flex flex-1 flex-col">
                     <Hero />
+                    <CategoryFilter />
+                    <Menu />
                 </main>
             </div>
         </>
