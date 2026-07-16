@@ -25,7 +25,7 @@ export function SiteFooter() {
                     <FooterHours />
 
                     <div>
-                        <h4 className="font-heading text-sm font-semibold text-foreground">Find us</h4>
+                        <h4 className="text-sm font-semibold text-foreground">Find us</h4>
                         <ul className="mt-2 space-y-2 text-sm text-muted-foreground">
                             <li className="flex items-center gap-2">
                                 <MapPin className="size-4 shrink-0" />

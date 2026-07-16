@@ -9,7 +9,7 @@ export function Menu({ categories }: { categories: Category[] }) {
                     <div className="mb-3 flex items-center gap-4">
                         <span className="h-px flex-1 bg-border" />
 
-                        <h2 className="uppercase font-heading text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
+                        <h2 className="font-display text-xl tracking-tight text-foreground uppercase sm:text-2xl">
                             {category.title}
                         </h2>
 

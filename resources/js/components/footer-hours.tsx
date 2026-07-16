@@ -20,7 +20,7 @@ export function FooterHours() {
 
     return (
         <div>
-            <h4 className="flex items-baseline gap-2 font-heading text-sm font-semibold text-foreground">
+            <h4 className="flex items-baseline gap-2 text-sm font-semibold text-foreground">
                 Opening hours
                 <span
                     className={cn(

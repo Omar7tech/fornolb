@@ -14,8 +14,8 @@ export default defineConfig({
                 bunny('Geist', {
                     weights: [400, 500, 600, 700],
                 }),
-                bunny('Space Grotesk', {
-                    weights: [500, 600, 700],
+                bunny('Archivo Black', {
+                    weights: [400],
                 }),
             ],
         }),
