@@ -10,7 +10,17 @@ export function Hero() {
             />
 
             <div className="mx-auto flex min-h-[60vh] w-full max-w-6xl flex-col items-center justify-center gap-8 px-6 pt-12 pb-20 sm:pt-16 sm:pb-24">
-                <HeroLogo className="w-full max-w-[280px] sm:max-w-[340px] animate-in fade-in zoom-in-95 duration-1000 ease-out" />
+                {/* The logo is the headline, so it carries the <h1>. The text is
+                    the accessible name for it: without one the page has no
+                    heading above the category <h2>s, for readers or crawlers. */}
+                <h1 className="contents">
+                    <span className="sr-only">Forno Flat Bread — manakish, pizza and wraps in Aley, Lebanon</span>
+
+                    <HeroLogo
+                        decorative
+                        className="w-full max-w-[280px] sm:max-w-[340px] animate-in fade-in zoom-in-95 duration-1000 ease-out"
+                    />
+                </h1>
             </div>
         </section>
     );

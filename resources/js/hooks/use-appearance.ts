@@ -15,8 +15,20 @@ const setCookie = (name: string, value: string, days = 365) => {
 
 const applyTheme = (appearance: Appearance) => {
     const isDark = appearance === 'dark' || (appearance === 'system' && prefersDark());
+    const root = document.documentElement;
 
-    document.documentElement.classList.toggle('dark', isDark);
+    if (root.classList.contains('dark') === isDark) {
+        return;
+    }
+
+    root.classList.add('theme-switching');
+    root.classList.toggle('dark', isDark);
+
+    // Flush the new colours while transitions are still suppressed; removing the
+    // class in the same frame would otherwise let them animate after all.
+    void root.offsetWidth;
+
+    root.classList.remove('theme-switching');
 };
 
 const mediaQuery = () => {

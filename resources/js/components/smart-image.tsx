@@ -13,6 +13,8 @@ interface SmartImageProps {
     imgClassName?: string;
     draggable?: boolean;
     loading?: 'lazy' | 'eager';
+    /** Shown instead of the image when the file can't be loaded. */
+    fallback?: ReactNode;
     /** Overlays rendered above the image, e.g. badges. */
     children?: ReactNode;
 }
@@ -28,16 +30,24 @@ export function SmartImage({
     imgClassName,
     draggable,
     loading = 'lazy',
+    fallback,
     children,
 }: SmartImageProps) {
     const ref = useRef<HTMLImageElement>(null);
     const [loaded, setLoaded] = useState(false);
+    const [failed, setFailed] = useState(false);
 
     // Reset on src change, but treat already-cached images as loaded so the
     // spinner doesn't flash (a cached image won't fire `onLoad`).
     useEffect(() => {
         setLoaded(ref.current?.complete ?? false);
+        setFailed(false);
     }, [src]);
+
+    // A missing file would otherwise render the browser's broken-image icon.
+    if (failed && fallback) {
+        return <span className={cn('relative block overflow-hidden', className)}>{fallback}</span>;
+    }
 
     return (
         <span className={cn('relative block overflow-hidden', className)}>
@@ -55,7 +65,10 @@ export function SmartImage({
                 loading={loading}
                 decoding="async"
                 onLoad={() => setLoaded(true)}
-                onError={() => setLoaded(true)}
+                onError={() => {
+                    setLoaded(true);
+                    setFailed(true);
+                }}
                 className={cn('size-full transition-opacity duration-300', !loaded && 'opacity-0', imgClassName)}
             />
 

@@ -2,14 +2,32 @@ import { useId } from 'react';
 
 import { cn } from '@/lib/utils';
 
-export function HeroLogo({ className, variant = 'svg' }: { className?: string; variant?: 'svg' | 'image' }) {
+export function HeroLogo({
+    className,
+    variant = 'svg',
+    decorative = false,
+}: {
+    className?: string;
+    variant?: 'svg' | 'image';
+    /**
+     * Hide the logo from screen readers. Use wherever the surrounding markup
+     * already names it, or where it's standing in for a missing image — the
+     * name would otherwise be announced once per product down the menu.
+     */
+    decorative?: boolean;
+}) {
     const gradientId = `forno-ring-teal-${useId().replace(/:/g, '')}`;
+
+    // Either the logo names itself, or it's silent — never both.
+    const labelling = decorative
+        ? ({ 'aria-hidden': true } as const)
+        : ({ role: 'img', 'aria-label': 'Forno Flat Bread Co.' } as const);
 
     if (variant === 'image') {
         return (
             <img
                 src="/logos/main-logo.png"
-                alt="Forno Flat Bread Co."
+                alt={decorative ? '' : 'Forno Flat Bread Co.'}
                 className={cn('h-auto w-full drop-shadow-[0_10px_30px_rgba(26,107,107,0.15)]', className)}
             />
         );
@@ -18,8 +36,7 @@ export function HeroLogo({ className, variant = 'svg' }: { className?: string; v
     return (
         <svg
             viewBox="0 0 600 599"
-            role="img"
-            aria-label="Forno Flat Bread Co."
+            {...labelling}
             className={cn('h-auto w-full text-brand-ink dark:text-white', className)}
         >
             <defs>

@@ -241,3 +241,14 @@
     @apply font-sans;
     }
 }
+
+/* Held on <html> only while the theme class is swapped, so every surface
+   repaints in the same frame. Without it the elements carrying `transition-*`
+   fade to their new colour while everything else flips instantly, and the
+   staggered repaint reads as lag. */
+.theme-switching *,
+.theme-switching *::before,
+.theme-switching *::after {
+  transition: none !important;
+}
+

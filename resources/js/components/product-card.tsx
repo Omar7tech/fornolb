@@ -51,9 +51,10 @@ export function ProductCard({ product }: { product: Product }) {
                             className="size-20 shrink-0 rounded-md md:size-28"
                             imgClassName="object-cover transition-transform duration-300 group-hover:scale-105"
                             draggable={false}
+                            fallback={<HeroLogo decorative className="size-full" />}
                         />
                     ) : (
-                        <HeroLogo className="size-20 shrink-0 md:size-28" />
+                        <HeroLogo decorative className="size-20 shrink-0 md:size-28" />
                     )}
 
                     <div className="flex min-w-0 flex-1 flex-col">
