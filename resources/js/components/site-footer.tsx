@@ -14,11 +14,19 @@ const DEVELOPER_MESSAGE =
 export function SiteFooter() {
     return (
         <footer className="relative w-full overflow-hidden border-t border-border bg-background">
+            {/* A teal glow rising from the bottom edge, under the grid. Warms the
+                close of the page and lifts the brand colour off the flat ground
+                without drawing an edge anywhere. */}
+            <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_75%_65%_at_50%_115%,rgba(26,107,107,0.14),transparent_70%)] dark:bg-[radial-gradient(ellipse_75%_65%_at_50%_115%,rgba(143,215,214,0.09),transparent_70%)]"
+            />
+
             {/* The same grid the hero opens with, masked from the bottom instead of
                 the top, so the page closes on the texture it started with. */}
             <div
                 aria-hidden
-                className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_100%,#000_60%,transparent_100%)] bg-[size:14px_24px] dark:bg-[linear-gradient(to_right,#ffffff1a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff1a_1px,transparent_1px)]"
+                className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f17_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f17_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_100%,#000_60%,transparent_100%)] bg-[size:14px_24px] dark:bg-[linear-gradient(to_right,#ffffff0d_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0d_1px,transparent_1px)]"
             />
 
             <div className="relative mx-auto w-full max-w-6xl px-4 py-14 sm:px-6">
