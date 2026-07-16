@@ -10,7 +10,7 @@ export function CategoryFilter() {
     };
 
     return (
-        <section className="w-full border-b border-border">
+        <section className="sticky top-0 z-40 w-full border-b border-border bg-background">
             <div className="mx-auto w-full max-w-6xl px-6 py-6">
                 <div className="-mx-6 flex gap-2 overflow-x-auto px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                     {menuCategories.map((category) => (

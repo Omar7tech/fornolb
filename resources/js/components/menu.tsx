@@ -8,7 +8,7 @@ export function Menu() {
                 <section
                     key={category.id}
                     id={`category-${category.id}`}
-                    className="scroll-mt-6 pb-12 last:pb-0"
+                    className="scroll-mt-30 pb-12 last:pb-0"
                 >
                     <h2 className="mb-6 text-2xl font-semibold text-foreground">{category.label}</h2>
 
