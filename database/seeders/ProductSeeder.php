@@ -15,7 +15,7 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
         Category::all()->each(function (Category $category) {
-            Product::factory(fake()->numberBetween(5, 10))->create([
+            Product::factory(fake()->numberBetween(2, 4))->create([
                 'category_id' => $category->id,
             ]);
         });
