@@ -3,6 +3,7 @@ import { Head } from '@inertiajs/react';
 import { CategoryFilter } from '@/components/category-filter';
 import { Hero } from '@/components/hero';
 import { Menu } from '@/components/menu';
+import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 
 export default function Welcome() {
@@ -18,6 +19,8 @@ export default function Welcome() {
                     <CategoryFilter />
                     <Menu />
                 </main>
+
+                <SiteFooter />
             </div>
         </>
     );
