@@ -153,7 +153,10 @@ class ProductsRelationManager extends RelationManager
                     ->toggleable(),
                 PriceColumn::make('price')
                     ->label('Price')
-                    ->sortable(query: fn (Builder $query, string $direction): Builder => $query->orderByEffectivePrice($direction)),
+                    ->sortable(query: function (Builder $query, string $direction): Builder {
+                        /** @var Builder<Product> $query */
+                        return $query->orderByEffectivePrice($direction);
+                    }),
                 TextColumn::make('preparation_time')
                     ->label('Prep. time')
                     ->formatStateUsing(fn (?int $state): ?string => $state === null ? null : "{$state} ".Str::plural('min', $state))

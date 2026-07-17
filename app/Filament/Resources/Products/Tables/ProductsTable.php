@@ -54,7 +54,10 @@ class ProductsTable
                 PriceColumn::make('price')
                     ->label('Price')
                     ->lbpRate($lbpRate)
-                    ->sortable(query: fn (Builder $query, string $direction): Builder => $query->orderByEffectivePrice($direction)),
+                    ->sortable(query: function (Builder $query, string $direction): Builder {
+                        /** @var Builder<Product> $query */
+                        return $query->orderByEffectivePrice($direction);
+                    }),
                 TextColumn::make('preparation_time')
                     ->label('Prep. time')
                     ->formatStateUsing(fn (?int $state): ?string => $state === null ? null : "{$state} ".Str::plural('min', $state))
