@@ -97,6 +97,10 @@ class ProductsRelationManager extends RelationManager
                             ->schema([
                                 Repeater::make('variants')
                                     ->hiddenLabel()
+                                    // Most products have no variants, so start
+                                    // empty rather than making the blank row
+                                    // Filament adds by default fail validation.
+                                    ->defaultItems(0)
                                     ->table([
                                         TableColumn::make('Name')->markAsRequired(),
                                         TableColumn::make('Price')->markAsRequired(),
