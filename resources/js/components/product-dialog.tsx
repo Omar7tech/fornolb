@@ -3,8 +3,8 @@ import { Clock, Star } from 'lucide-react';
 import { ProductDietIcons } from '@/components/product-diet-icons';
 import { ProductPrice } from '@/components/product-price';
 import { SmartImage } from '@/components/smart-image';
-import { VariantSelector } from '@/components/variant-selector';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { VariantSelector } from '@/components/variant-selector';
 import type { Product, ProductVariant } from '@/types';
 
 /**

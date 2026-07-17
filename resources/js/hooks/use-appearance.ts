@@ -53,8 +53,16 @@ export function initializeTheme() {
     mediaQuery()?.addEventListener('change', handleSystemThemeChange);
 }
 
+const savedAppearance = (): Appearance => {
+    if (typeof localStorage === 'undefined') {
+        return 'system';
+    }
+
+    return (localStorage.getItem('theme') as Appearance | null) || 'system';
+};
+
 export function useAppearance() {
-    const [appearance, setAppearance] = useState<Appearance>('system');
+    const [appearance, setAppearance] = useState<Appearance>(savedAppearance);
 
     const updateAppearance = useCallback((mode: Appearance) => {
         setAppearance(mode);
@@ -66,12 +74,14 @@ export function useAppearance() {
     }, []);
 
     useEffect(() => {
-        const savedAppearance = localStorage.getItem('theme') as Appearance | null;
-
-        updateAppearance(savedAppearance || 'system');
+        // Mirror the stored preference into the cookie so SSR renders the same
+        // theme the client already applied in initializeTheme().
+        setCookie('theme', appearance);
+        applyTheme(appearance);
 
         return () => mediaQuery()?.removeEventListener('change', handleSystemThemeChange);
-    }, [updateAppearance]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return { appearance, updateAppearance } as const;
 }
