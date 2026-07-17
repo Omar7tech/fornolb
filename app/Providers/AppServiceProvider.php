@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
+use Inertia\ExceptionResponse;
+use Inertia\Inertia;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureDefaults();
+        $this->configureErrorPages();
     }
 
     /**
@@ -46,5 +49,31 @@ class AppServiceProvider extends ServiceProvider
                 ->uncompromised()
             : null,
         );
+    }
+
+    /**
+     * Route storefront errors to the branded error page.
+     *
+     * The admin panel is left alone so Filament keeps its own handling, and a
+     * 500 stays with the framework's error page while debugging, where the
+     * stack trace is the whole point.
+     */
+    protected function configureErrorPages(): void
+    {
+        Inertia::handleExceptionsUsing(function (ExceptionResponse $response): ExceptionResponse {
+            $status = $response->statusCode();
+
+            $isStorefrontError = ! $response->request->is('admin', 'admin/*')
+                && (in_array($status, [403, 404, 419, 429, 503], true)
+                    || ($status >= 500 && ! config('app.debug')));
+
+            if (! $isStorefrontError) {
+                return $response;
+            }
+
+            return $response
+                ->render('error', ['status' => $status])
+                ->withSharedData();
+        });
     }
 }
