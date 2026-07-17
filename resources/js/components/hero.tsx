@@ -16,9 +16,14 @@ export function Hero() {
                 <h1 className="contents">
                     <span className="sr-only">Forno Flat Bread — manakish, pizza and wraps in Aley, Lebanon</span>
 
+                    {/* Neon in dark mode: drop-shadow follows the SVG's own alpha,
+                        so the glow traces the teal ring like a lit tube instead of
+                        haloing a box. Three passes — a tight bright core, a mid
+                        bloom, then a wide ambient wash — is what sells it as light
+                        rather than a blur. */}
                     <HeroLogo
                         decorative
-                        className="w-full max-w-[280px] sm:max-w-[340px] animate-in fade-in zoom-in-95 duration-1000 ease-out"
+                        className="w-full max-w-[280px] animate-in fade-in zoom-in-95 duration-1000 ease-out sm:max-w-[340px] dark:[filter:drop-shadow(0_0_2px_rgba(143,215,214,0.22))_drop-shadow(0_0_14px_rgba(143,215,214,0.12))_drop-shadow(0_0_44px_rgba(26,107,107,0.3))]"
                     />
                 </h1>
             </div>
