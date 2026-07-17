@@ -5,8 +5,7 @@ use App\Filament\Widgets\ProductsPerCategoryChart;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-
-use function Pest\Livewire\livewire;
+use Livewire\Livewire;
 
 uses(RefreshDatabase::class);
 
@@ -18,7 +17,11 @@ uses(RefreshDatabase::class);
  */
 function menuStats(): array
 {
-    $stats = livewire(MenuOverview::class)->instance()->getCachedStats();
+    $widget = Livewire::test(MenuOverview::class)->instance();
+
+    // getCachedStats() is protected, so borrow the widget's own scope rather
+    // than loosening the assertions to a string match on rendered HTML.
+    $stats = (fn (): array => $this->getCachedStats())->call($widget);
 
     return collect($stats)
         ->mapWithKeys(fn ($stat) => [
@@ -36,9 +39,10 @@ it('counts live products separately from hidden ones', function () {
     Product::factory()->count(3)->for($category)->create(['is_active' => true]);
     Product::factory()->count(2)->for($category)->create(['is_active' => false]);
 
-    expect(menuStats()['Live products'])
-        ->value->toBe('3')
-        ->description->toBe('2 hidden from the menu');
+    expect(menuStats()['Live products'])->toBe([
+        'value' => '3',
+        'description' => '2 hidden from the menu',
+    ]);
 });
 
 it('flags active categories with no live products', function () {
@@ -51,9 +55,10 @@ it('flags active categories with no live products', function () {
 
     Category::factory()->create(['is_active' => false]);
 
-    expect(menuStats()['Active categories'])
-        ->value->toBe('2')
-        ->description->toBe('1 with no live products');
+    expect(menuStats()['Active categories'])->toBe([
+        'value' => '2',
+        'description' => '1 with no live products',
+    ]);
 });
 
 it('averages the discount across discounted products only', function () {
@@ -77,9 +82,10 @@ it('averages the discount across discounted products only', function () {
         'discount_price' => null,
     ]);
 
-    expect(menuStats()['On discount'])
-        ->value->toBe('2')
-        ->description->toBe('30% off on average');
+    expect(menuStats()['On discount'])->toBe([
+        'value' => '2',
+        'description' => '30% off on average',
+    ]);
 });
 
 it('stays quiet when there is no menu yet', function () {
@@ -98,7 +104,8 @@ it('charts live products per category, biggest first', function () {
 
     Category::factory()->create(['title' => 'Retired', 'is_active' => false]);
 
-    $data = livewire(ProductsPerCategoryChart::class)->instance()->getCachedData();
+    $chart = Livewire::test(ProductsPerCategoryChart::class)->instance();
+    $data = (fn (): array => $this->getCachedData())->call($chart);
 
     expect($data['labels'])->toBe(['Drinks', 'Manakish'])
         ->and($data['datasets'][0]['data'])->toBe([4, 2]);
