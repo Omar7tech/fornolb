@@ -11,6 +11,11 @@
     --color-brand-teal: #1a6b6b;
     --color-brand-teal-light: #8fd7d6;
     --color-brand-ink: #0e1f1c;
+
+    /* Same hue as --color-brand-teal, lifted in lightness. Large solid fills of
+       the base teal read green; small text and thin borders don't. Use this for
+       big filled shapes only. */
+    --color-brand-teal-bright: #1a8080;
 }
 
 @theme inline {

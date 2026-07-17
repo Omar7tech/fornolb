@@ -24,7 +24,7 @@ export function WhatsAppFab() {
             rel="noreferrer"
             aria-label="Order on WhatsApp"
             title="Order on WhatsApp"
-            className="fixed right-4 bottom-[calc(1rem+env(safe-area-inset-bottom))] z-40 flex size-14 items-center justify-center rounded-full bg-brand-teal shadow-lg transition-transform hover:scale-105 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none active:scale-95 md:right-6 md:bottom-[calc(1.5rem+env(safe-area-inset-bottom))]"
+            className="fixed right-4 bottom-[calc(1rem+env(safe-area-inset-bottom))] z-40 flex size-14 items-center justify-center rounded-full bg-brand-teal-bright shadow-lg transition-transform hover:scale-105 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none active:scale-95 md:right-6 md:bottom-[calc(1.5rem+env(safe-area-inset-bottom))]"
         >
             {/* The brand glyph is green on transparent; flatten it to white to
                 sit on the teal button. */}
