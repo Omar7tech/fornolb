@@ -4,6 +4,7 @@ namespace App\Filament\Widgets;
 
 use App\Models\Category;
 use Filament\Widgets\ChartWidget;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
 class ProductsPerCategoryChart extends ChartWidget
@@ -47,12 +48,14 @@ class ProductsPerCategoryChart extends ChartWidget
      */
     private function liveCounts(): Collection
     {
-        return Category::query()
+        /** @var Collection<string, int> $counts */
+        $counts = Category::query()
             ->where('is_active', true)
-            ->withCount(['products as live_products_count' => fn ($query) => $query->where('is_active', true)])
+            ->withCount(['products as live_products_count' => fn (Builder $query): Builder => $query->where('is_active', true)])
             ->orderByDesc('live_products_count')
-            ->get()
-            ->mapWithKeys(fn (Category $category): array => [$category->title => $category->live_products_count]);
+            ->pluck('live_products_count', 'title');
+
+        return $counts;
     }
 
     protected function getType(): string
